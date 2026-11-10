@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Repàs Roma i Bizanci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Mateixa estructura que «Repàs Egipte i Grècia»; to "travertí + vermell pompeià + ocre" */
+:root{
+  --bg:#f1e6cf; --surface:#faf4e6; --ink:#1f2433; --muted:#5f5547; --line:#dfd0b3;
+  --lapis:#9b2d20; --lapis-soft:#f6e4df; --ochre:#b7791f; --ochre-soft:#f6ead6;
+  --ok:#2f7d4f; --ok-soft:#e1f1e7; --bad:#b4322c; --bad-soft:#f8e1df;
+  --stone:#e6dcc6; --stone2:#cdbf9f; --stone3:#b9a77f; --earth:#d9c9a8; --rock:#c9b48c; --dark:#3a3a3a; --gold:#d9a521; --water:#bcd3e6;
+  --f-display:"Marcellus","Trajan Pro",Georgia,serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+[hidden]{display:none!important}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);margin-top:env(safe-area-inset-top,0px)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding-block:10px}
+.brand{font-family:var(--f-display);font-size:1.25rem;letter-spacing:.02em;margin-right:auto}
+.brand span{color:var(--ochre)}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
+nav.tabs button{font:inherit;font-size:.92rem;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--lapis);border-color:var(--lapis);color:var(--surface)}
+button:focus-visible,summary:focus-visible,.hot:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+main{padding-block:20px 60px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;line-height:1.2}
+h1{font-size:2rem;margin:0 0 6px}
+h2{font-size:1.5rem;margin:0}
+h3{font-size:1.15rem;margin:18px 0 6px;color:var(--lapis)}
+p{margin:6px 0 10px}
+.lead{color:var(--muted);max-width:65ch}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre);font-weight:700}
+.plan{background:var(--ochre-soft);border-radius:10px;padding:14px 16px;margin:16px 0 22px}
+.plan ol{margin:6px 0 0;padding-left:22px}
+.plan li{margin:4px 0}
+details.sec{border-top:1px solid var(--line);padding:4px 0}
+details.sec:last-of-type{border-bottom:1px solid var(--line)}
+details.sec>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:10px;padding:12px 0}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::after{content:"+";margin-left:auto;font-size:1.3rem;color:var(--muted)}
+details.sec[open]>summary::after{content:"–"}
+details.sec>summary .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.body{padding:0 0 16px;max-width:70ch}
+ul.k{margin:6px 0 10px;padding-left:20px}
+ul.k li{margin:3px 0}
+b,strong{font-weight:700}
+.tbl{overflow-x:auto;margin:8px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;border-bottom:1px solid var(--line)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.obra{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+.obra h3{margin-top:0;color:var(--ink);font-size:1.3rem}
+.lbl{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);font-weight:700;margin-top:10px}
+.tip{border-left:3px solid var(--ochre);padding:4px 0 4px 12px;color:var(--muted);font-size:.94rem;margin:10px 0}
+.ext{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ochre);font-weight:700;border:1px solid var(--ochre);border-radius:4px;padding:0 4px;margin-left:4px;white-space:nowrap}
+.timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:10px 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.timeline.t4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.timeline div{padding:10px;background:var(--surface);border-right:1px solid var(--line);min-width:0}
+.timeline div:last-child{border-right:0}
+.timeline b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.05rem}
+.timeline small{color:var(--muted);display:block}
+.timeline .hl{background:var(--lapis-soft)}
+.timeline .obr{display:block;margin-top:4px;font-weight:700;color:var(--lapis)}
+@media (max-width:620px){.timeline,.timeline.t4{grid-template-columns:1fr}.timeline div{border-right:0;border-bottom:1px solid var(--line)}}
+/* jocs */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
+.picker button{font:inherit;font-size:.88rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 11px;border-radius:999px;cursor:pointer}
+.picker button[aria-pressed="true"]{border-color:var(--lapis);background:var(--lapis-soft);color:var(--lapis);font-weight:700}
+.picker .grp{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);align-self:center;margin:0 4px 0 6px}
+.gamebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:10px}
+.prompt{font-size:1.15rem;flex:1 1 260px;min-width:0}
+.prompt b{color:var(--lapis)}
+.score{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.92rem}
+.btn{font:inherit;font-size:.92rem;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:7px 14px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.diagram{overflow-x:auto}
+.diagram svg{display:block;width:100%;max-width:640px;margin:0 auto;height:auto;min-width:300px}
+.st{fill:var(--stone);stroke:var(--dark);stroke-width:1.2}
+.st2{fill:var(--stone2);stroke:var(--dark);stroke-width:1.2}
+.st3{fill:var(--stone3);stroke:var(--dark);stroke-width:1.2}
+.gr{fill:var(--earth)}
+.ln{fill:none;stroke:var(--dark);stroke-width:1.2}
+.ln2{fill:none;stroke:var(--dark);stroke-width:.8;opacity:.7}
+.room{fill:var(--bg);stroke:var(--dark);stroke-width:1.4}
+.gd{fill:var(--gold);stroke:var(--dark);stroke-width:1}
+.wt{fill:var(--water);stroke:var(--dark);stroke-width:1}
+.dot{fill:var(--dark)}
+.lead-l{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 2}
+.hot{cursor:pointer}
+.hot circle{fill:var(--surface);stroke:var(--lapis);stroke-width:2}
+.hot text{fill:var(--lapis);font:700 11px var(--f-body);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.hot:hover circle,.hot.sel circle{fill:var(--lapis-soft)}
+.hot.done circle{fill:var(--ok);stroke:var(--ok)}
+.hot.done text{fill:var(--surface)}
+.hot.wrong circle{fill:var(--bad);stroke:var(--bad)}
+.hot.wrong text{fill:var(--surface)}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px 14px;margin-top:12px;padding:0;list-style:none;font-size:.94rem}
+.legend li{display:flex;gap:8px;align-items:baseline;padding:3px 6px;border-radius:6px}
+.legend li.sel{background:var(--lapis-soft)}
+.legend .n{font-weight:700;color:var(--lapis);font-variant-numeric:tabular-nums;min-width:1.4em}
+.legend .h{color:var(--muted);font-size:.86rem;display:block}
+.legend.hide .nm{filter:blur(5px);user-select:none}
+.feedback{min-height:1.6em;margin-top:8px;font-weight:700}
+.feedback.ok{color:var(--ok)} .feedback.bad{color:var(--bad)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.opts button{font:inherit;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer}
+.opts button:hover{border-color:var(--lapis)}
+.opts button.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opts button.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.opts button:disabled{cursor:default}
+.qtext{font-size:1.12rem;margin:6px 0 10px}
+.expl{background:var(--lapis-soft);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.95rem}
+.progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0 12px}
+.progress i{display:block;height:100%;background:var(--ochre);width:0;transition:width .3s}
+.card{background:var(--ochre-soft);border-radius:10px;padding:14px 16px;font-size:1.08rem;margin:4px 0 12px}
+.small{font-size:.88rem;color:var(--muted)}
+@media (max-width:600px){header.top{position:static}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Roma <span>·</span> Bizanci</div>
+    <nav class="tabs" role="tablist" aria-label="Seccions">
+      <button role="tab" data-tab="pla" aria-selected="true">Pla</button>
+      <button role="tab" data-tab="bloc1" aria-selected="false">Bloc 1</button>
+      <button role="tab" data-tab="bloc2" aria-selected="false">Bloc 2</button>
+      <button role="tab" data-tab="bloc3" aria-selected="false">Bloc 3</button>
+      <button role="tab" data-tab="parts" aria-selected="false">Parts</button>
+      <button role="tab" data-tab="tipologies" aria-selected="false">Edificis</button>
+      <button role="tab" data-tab="vf" aria-selected="false">V o F</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ PLA ============ -->
+<section data-view="pla">
+  <div class="eyebrow">Història de l'Art · Roma i art bizantí</div>
+  <h1>Pla d'estudi</h1>
+  <p class="lead">El contingut està ordenat segons els blocs de l'examen. El bloc 4 (expressió escrita) no depèn del temari, així que no cal preparar-lo.</p>
+  <div class="tbl"><table>
+    <tr><th>Bloc</th><th>Què et demanen</th><th>Com ho estudies</th><th>Temps</th></tr>
+    <tr><td><b>1</b></td><td>Vocabulari, conceptes, relacionar parts (Colosseu, Panteó, columna, domus, Santa Sofia, petxina) i veritat o fals</td><td>Llegeix el <b>Bloc 1</b> (glossari) i practica amb <b>Parts</b>, <b>Edificis</b> i <b>V o F</b></td><td>≈ 35%</td></tr>
+    <tr><td><b>2</b></td><td>Comentari d'una obra a triar entre dues: context, anàlisi formal, tema, funció i significat</td><td><b>Bloc 2</b>: les 5 obres (4 de Roma i Santa Sofia) redactades com a resposta d'examen; aprèn-ne les idees en negreta</td><td>≈ 45%</td></tr>
+    <tr><td><b>3</b></td><td>Comparar obres des d'una perspectiva social, de gènere, etc.</td><td><b>Bloc 3</b>: les idees clau de cada perspectiva i 7 comparacions, amb obres de Grècia, Roma i Bizanci</td><td>≈ 20%</td></tr>
+  </table></div>
+  <div class="plan">
+    <strong>Ordre recomanat</strong>
+    <ol>
+      <li><b>Bloc 2 primer</b>: és el que val més i, en estudiar les obres, ja aprens molt vocabulari.</li>
+      <li><b>Bloc 1</b>: llegeix el glossari i després fes els jocs fins que no fallis.</li>
+      <li><b>Bloc 3</b>: llegeix les comparacions. Repassa també les obres de Grècia que s'hi fan servir (Partenó, Epidaure, Dorífor i Venus de Cnido).</li>
+      <li>Al final, fes <b>V o F</b> i torna a repassar el que hagis fallat.</li>
+    </ol>
+  </div>
+  <p class="tip">Hi ha 5 obres: 4 de Roma (Panteó, Colosseu, August de Prima Porta i Columna Trajana) i 1 d'art bizantí (Santa Sofia). Aprèn-les totes. El context de l'Alt Imperi és gairebé el mateix per a les quatre romanes; només canvia l'emperador. Santa Sofia es compara sovint amb el Panteó: mira la comparació del Bloc 3.</p>
+  <p class="small"><b>Fonts:</b> presentacions del professor «3. Art clàssic: Roma» i «4. Art bizantí» (Història de l'Art, 2n de Batxillerat). Les idees marcades amb <span class="ext">per ampliar</span> no surten a la presentació i s'han completat amb coneixement general.</p>
+</section>
+
+<!-- ===== BLOC 1 ===== -->
+<section data-view="bloc1" hidden>
+  <div class="eyebrow">Bloc 1</div>
+  <h1>Vocabulari i conceptes</h1>
+  <p class="lead">El que et pot sortir per definir, relacionar o en una pregunta de veritat o fals. Una línia per terme.</p>
+
+  <details class="sec" open>
+    <summary><h2>Períodes i característiques</h2></summary>
+    <div class="body">
+      <h3>Etapes de Roma</h3>
+      <div class="timeline">
+        <div><b>Monarquia</b><small>753–509 aC</small>Fundació llegendària (Ròmul i Rem). Roma dins de l'àmbit etrusc; rei assessorat per un senat.</div>
+        <div><b>República</b><small>509–31 aC</small>Senat i magistratures elegides. Conquesta d'Itàlia i del Mediterrani (guerres púniques) i de Grècia (s. II aC).</div>
+        <div class="hl"><b>Imperi</b><small>31 aC–476 dC</small>L'emperador té tot el poder. Alt Imperi (s. I aC–II dC): les 4 obres. Baix Imperi (s. III dC): crisi i invasions.</div>
+      </div>
+      <h3>Emperadors de les obres PAU</h3>
+      <div class="timeline t4">
+        <div><b>August</b><small>27 aC–14 dC · dinastia Júlia-Clàudia</small>Pax augusta, classicisme augustal.<span class="obr">August de Prima Porta</span></div>
+        <div><b>Vespasià, Titus, Domicià</b><small>69–96 dC · dinastia Flàvia</small>Restabliment de l'ordre després de Neró.<span class="obr">Colosseu</span></div>
+        <div><b>Trajà</b><small>98–117 dC · Antonins</small>Militar; màxima extensió de l'Imperi.<span class="obr">Columna Trajana</span></div>
+        <div><b>Adrià</b><small>117–138 dC · Antonins</small>Més pacifista; enforteix les fronteres.<span class="obr">Panteó</span></div>
+      </div>
+      <ul class="k">
+        <li>Art <b>eclèctic</b>: hereta dels <b>etruscs</b> el realisme, el sentit pràctic, l'arc i la volta, i dels <b>grecs</b> els ordres, la racionalitat i els cànons.</li>
+        <li>Art <b>anònim</b> i <b>propagandístic</b>, al servei de l'Estat i de les elits. <b>Grandiositat</b> i <b>monumentalitat</b>.</li>
+        <li>Prioritza la <b>funció i la tècnica</b> davant de l'estètica: gran desenvolupament de l'<b>enginyeria</b>.</li>
+        <li>Art <b>realista</b> (herència etrusca): retrats, escenes quotidianes i bèl·liques.</li>
+        <li><b>Classicisme augustal</b>: amb August arriben molts artistes grecs i l'art imita el classicisme grec.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Materials i sistemes constructius</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Opus caementicium</b></td><td>Formigó romà: pedretes, grava, sorra, calç i aigua abocades en un encofrat de fusta. Més barat i maleable que el marbre.</td></tr>
+      <tr><td><b>Encofrat</b></td><td>Motlle de fusta on s'aboca el formigó fins que s'endureix (el Panteó en va necessitar un d'enorme).</td></tr>
+      <tr><td><b>Maó</b></td><td>Peça de fang cuit. Cobria els murs de formigó.</td></tr>
+      <tr><td><b>Travertí</b></td><td>Pedra calcària porosa usada per revestir edificis (Colosseu).</td></tr>
+      <tr><td><b>Sistema arquitravat</b></td><td>Columnes o pilars que sostenen elements horitzontals (arquitrau, entaulament).</td></tr>
+      <tr><td><b>Sistema voltat</b></td><td>Cobertes amb arcs, voltes i cúpules. Els romans el combinen amb l'arquitravat.</td></tr>
+      <tr><td><b>Arc de mig punt</b></td><td>Arc semicircular, heretat dels etruscs.</td></tr>
+      <tr><td><b>Volta de canó</b></td><td>Coberta semicilíndrica, com un arc de mig punt allargat.</td></tr>
+      <tr><td><b>Volta d'aresta</b></td><td>Encreuament de dues voltes de canó en angle recte.</td></tr>
+      <tr><td><b>Cúpula</b></td><td>Coberta semiesfèrica (Panteó).</td></tr>
+      <tr><td><b>Tambor</b></td><td>Mur cilíndric sobre el qual descansa la cúpula.</td></tr>
+      <tr><td><b>Cassetons</b></td><td>Plafons enfonsats que decoren la cúpula (Panteó: 5 fileres de 28) i creen jocs de llum i ombra.</td></tr>
+      <tr><td><b>Òcul</b></td><td>Obertura circular al centre de la cúpula que il·lumina i ventila (Panteó: gairebé 9 m).</td></tr>
+      <tr><td><b>Ordre toscà</b></td><td>Ordre d'origen etrusc, com el dòric però amb base.</td></tr>
+      <tr><td><b>Ordre compost</b></td><td>Unió del capitell corinti (fulles d'acant) amb les volutes del jònic.</td></tr>
+      <tr><td><b>Superposició d'ordres</b></td><td>Un ordre diferent a cada pis, de més robust a més lleuger (Colosseu: dòric-toscà, jònic, corinti).</td></tr>
+      <tr><td><b>Columna adossada</b></td><td>Columna enganxada a un mur o pilar, amb funció decorativa.</td></tr>
+      <tr><td><b>Pilastra</b></td><td>Pilar rectangular adossat al mur que imita una columna.</td></tr>
+      <tr><td><b>Columna monolítica</b></td><td>Columna d'una sola peça de pedra (pòrtic del Panteó, de granit).</td></tr>
+    </table></div></div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Ciutat i tipologies d'edificis</h2></summary>
+    <div class="body">
+      <p>Classificació de la presentació: edificis <b>privats</b> (domus, insulae, vil·les i palaus) i <b>públics</b>: <b>religiosos</b> (temples i construccions funeràries) i <b>civils</b>, que poden ser per a la <b>diversió</b> (termes, teatres, amfiteatres, circs), de caràcter <b>administratiu</b> (basílica) o <b>monuments commemoratius</b> (arcs de triomf i columnes). A part, les <b>obres d'enginyeria</b> (calçades, ponts, aqüeductes, clavegueres).</p>
+      <div class="tbl"><table>
+        <tr><th>Terme</th><th>Definició</th></tr>
+        <tr><td><b>Urbanisme hipodàmic</b></td><td>Ciutat en quadrícula de carrers ortogonals (en honor a Hipòdam de Milet).</td></tr>
+        <tr><td><b>Cardo / decumanus</b></td><td>Carrer principal nord-sud / est-oest. Al seu encreuament hi ha el fòrum. Origen de ciutats com Barcelona.</td></tr>
+        <tr><td><b>Fòrum</b></td><td>Plaça principal, amb els edificis de poder i d'organització de la ciutat.</td></tr>
+        <tr><td><b>Temple romà</b></td><td>Sobre un alt <b>podi</b>, amb escalinata al davant; una cel·la (tres si és per a la tríada). <b>Pseudoperípter</b>: columnes adossades al mur (Maison Carrée de Nîmes).</td></tr>
+        <tr><td><b>Basílica</b></td><td>Edifici de funció múltiple: borsa de comerç, reunions, administració i tribunals.</td></tr>
+        <tr><td><b>Termes</b></td><td>Banys públics: el lloc preferit dels romans per banyar-se i fer gimnàstica.</td></tr>
+        <tr><td><b>Teatre</b></td><td>Edifici semicircular per a representacions (als romans els agradaven molt les comèdies).</td></tr>
+        <tr><td><b>Amfiteatre</b></td><td>Planta el·líptica amb grades al voltant d'una arena, per a lluites de gladiadors i de feres.</td></tr>
+        <tr><td><b>Circ</b></td><td>Pista allargada per a curses de carros.</td></tr>
+        <tr><td><b>Arc de triomf</b></td><td>Monument propagandístic que commemora les victòries del seu promotor.</td></tr>
+        <tr><td><b>Columna commemorativa</b></td><td>Columna amb un relleu que narra les gestes de l'emperador (Columna Trajana).</td></tr>
+        <tr><td><b>Aqüeducte</b></td><td>Obra d'enginyeria que porta l'aigua a la ciutat (Segòvia).</td></tr>
+        <tr><td><b>Domus</b></td><td>Casa unifamiliar de les famílies riques. Parts: vestíbul, <b>atri</b> amb <b>impluvi</b>, triclini (menjador), <b>peristil</b> (jardí porticat) amb larari.</td></tr>
+        <tr><td><b>Impluvi / compluvi</b></td><td>Bassa de l'atri que recull l'aigua de pluja / obertura del sostre per sobre.</td></tr>
+        <tr><td><b>Insula</b></td><td>Bloc d'habitatges de diversos pisos, normalment de lloguer.</td></tr>
+        <tr><td><b>Vil·la</b></td><td>Centre d'explotació agrària; de vegades, segona residència de patricis.</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>L'amfiteatre (Colosseu)</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Càvea</b></td><td>Graderia que envolta l'arena. El públic s'hi distribuïa segons la seva categoria social.</td></tr>
+      <tr><td><b>Arena</b></td><td>Pista central, de sorra, on es feien els espectacles (Colosseu: 74 × 46 m).</td></tr>
+      <tr><td><b>Hipogeu</b></td><td>Passadissos i cambres sota l'arena per a gladiadors i feres, amb ascensors de politges.</td></tr>
+      <tr><td><b>Velarium</b></td><td>Tendal sostingut per 240 màstils que protegia del sol i la pluja.</td></tr>
+      <tr><td><b>Àtic</b></td><td>Quart pis del Colosseu, massís, afegit per Domicià.</td></tr>
+      <tr><td><b>Venació</b></td><td>Lluita o cacera de feres.</td></tr>
+      <tr><td><b>Naumàquia</b></td><td>Batalla naval amb l'arena inundada.</td></tr>
+      <tr><td><b>Panem et circenses</b></td><td>«Pa i jocs»: tenir el poble content i allunyat de la política amb espectacles i aliment.</td></tr>
+    </table></div></div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Escultura</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Retrat</b></td><td>Representació d'una persona concreta. A Roma és realista (herència etrusca i hel·lenística) i es pintava fins al s. II.</td></tr>
+      <tr><td><b>Bust</b></td><td>Retrat del cap fins a les espatlles o mig tronc.</td></tr>
+      <tr><td><b>Escultura exempta</b></td><td>De volum rodó, es pot veure des de diferents punts de vista.</td></tr>
+      <tr><td><b>Retrat eqüestre</b></td><td>Retrat a cavall: és una novetat romana.</td></tr>
+      <tr><td><b>Relleu continu</b></td><td>Relleu que narra diversos episodis seguits d'un mateix fet (Columna Trajana).</td></tr>
+      <tr><td><b>Relleu helicoidal</b></td><td>Relleu que puja en espiral al voltant del fust.</td></tr>
+      <tr><td><b>Cuirassa</b></td><td>Armadura del tors. La d'August està decorada amb relleus.</td></tr>
+      <tr><td><b>Paludamentum</b></td><td>Capa vermella dels generals romans.</td></tr>
+      <tr><td><b>Contrapposto</b></td><td>Una cama aguanta el pes i l'altra està relaxada (model del Dorífor).</td></tr>
+      <tr><td><b>Divinització</b></td><td>Conversió de l'emperador mort en déu (Divus Augustus). August descalç = ja és a l'Olimp.</td></tr>
+      <tr><td><b>Còpia en marbre</b></td><td>Molts originals de bronze es van perdre i en queden còpies de marbre (August de Prima Porta).</td></tr>
+      <tr><td><b>Talla / fosa</b></td><td>Treure material d'un bloc (marbre) / abocar metall fos en un motlle (bronze).</td></tr>
+    </table></div></div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Pintura i mosaic</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Fresc</b></td><td>Pintura mural sobre l'arrebossat humit. Es conserva sobretot a Pompeia i Herculà.</td></tr>
+      <tr><td><b>1r estil: d'incrustació</b></td><td>Imita marbres i lloses de les parets.</td></tr>
+      <tr><td><b>2n estil: arquitectònic</b></td><td>Crea il·lusions d'espais arquitectònics amb perspectiva i ombres.</td></tr>
+      <tr><td><b>3r estil: ornamental</b></td><td>Emmarca les escenes amb elements arquitectònics fantàstics.</td></tr>
+      <tr><td><b>4t estil: il·lusionista</b></td><td>Recupera el segon estil i hi afegeix mitologia, escenes quotidianes i elements teatrals.</td></tr>
+      <tr><td><b>Tremp / encàustica</b></td><td>Pintura amb aglutinant / amb cera calenta, sobre fusta.</td></tr>
+      <tr><td><b>Mosaic / tessel·les</b></td><td>Decoració, sobretot de terres, feta amb peces petites de pedra, vidre, marbre o esmalt.</td></tr>
+      <tr><td><b>Opus tessellatum</b></td><td>Tessel·les cúbiques iguals per omplir escenes o figures.</td></tr>
+      <tr><td><b>Opus vermiculatum</b></td><td>Tessel·les molt petites per marcar contorns i detalls.</td></tr>
+      <tr><td><b>Opus sectile</b></td><td>Peces de formes i colors variats.</td></tr>
+    </table></div></div>
+  </details>
+
+  <h2 style="margin-top:26px">Art bizantí</h2>
+
+  <details class="sec">
+    <summary><h2>Bizanci: períodes i característiques</h2></summary>
+    <div class="body">
+      <p><b>Constantinoble</b> (actual Istanbul) la funda Constantí el <b>330</b>; el <b>395</b> és la capital de l'Imperi romà d'Orient. Quan cau l'Imperi d'Occident (<b>476</b>), Bizanci dura mil anys més, fins que els turcs otomans conquereixen Constantinoble el <b>1453</b>.</p>
+      <div class="timeline">
+        <div class="hl"><b>Primera edat d'or</b><small>s. V–VII</small>Justinià (527–565) i els Heraclis.<span class="obr">Santa Sofia</span></div>
+        <div><b>Iconoclàstia</b><small>726–843</small>Destrucció d'imatges i prohibició de fer-ne i exhibir-ne, com a reacció a la veneració d'imatges i relíquies.</div>
+        <div><b>Posticonoclasta</b><small>843–1453</small>Cisma d'Orient (1054): Església ortodoxa. Dinastia macedònia, «segona edat d'or» (867–1056): mosaic i icones. Paleòlegs (1259–1453): expansió als pobles eslaus.</div>
+      </div>
+      <ul class="k">
+        <li>Combina tres tradicions: <b>grega i hel·lenística</b> (elegància, relleus), <b>romana</b> (voltes, cúpules, tècniques constructives) i <b>oriental i cristiana</b> (marbres, mosaics, esmalts, imatges cristianes).</li>
+        <li>Les arts principals són l'<b>arquitectura</b> i el <b>mosaic</b>.</li>
+        <li>Exteriors <b>austers</b> (pedra o maó sense decorar) i interiors d'una gran <b>riquesa decorativa</b>.</li>
+        <li>S'escampa per Itàlia (Ravenna: San Vitale i Sant'Apollinare Nuovo; Venècia: San Marco), Espanya i els països eslaus (Rússia, Ucraïna, Bulgària).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Bizanci: arquitectura</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Planta basilical</b></td><td>Rectangular, amb una o més naus. D'origen tardoromà i paleocristià (Sant'Apollinare Nuovo).</td></tr>
+      <tr><td><b>Planta de creu grega</b></td><td>Creu de quatre braços iguals.</td></tr>
+      <tr><td><b>Planta centralitzada</b></td><td>Organitzada al voltant d'un centre; pot ser octogonal (San Vitale de Ravenna).</td></tr>
+      <tr><td><b>Atri / nàrtex</b></td><td>Pati d'entrada / vestíbul o pòrtic davant de l'església.</td></tr>
+      <tr><td><b>Tribuna o matroneu</b></td><td>Pis superior sobre les naus laterals, espai per a les dones. A Santa Sofia, des d'aquí els alts càrrecs seguien la litúrgia.</td></tr>
+      <tr><td><b>Absis</b></td><td>Capçalera semicircular de l'església, on hi ha l'altar.</td></tr>
+      <tr><td><b>Petxina</b></td><td>Triangle esfèric entre dos arcs que fa el pas d'una planta quadrada al cercle de la base de la cúpula.</td></tr>
+      <tr><td><b>Trompa</b></td><td>Semicon en un racó, com una volta volada, per passar d'una planta quadrada a una de circular o octogonal.</td></tr>
+      <tr><td><b>Semicúpula o mitja cúpula</b></td><td>Mitja cúpula que ajuda a aguantar la cúpula central (Santa Sofia: a l'est i a l'oest).</td></tr>
+      <tr><td><b>Exedra</b></td><td>Espai de planta semicircular, cobert amb una petita semicúpula.</td></tr>
+      <tr><td><b>Contrafort</b></td><td>Reforç exterior del mur que aguanta les empentes de la cúpula.</td></tr>
+      <tr><td><b>Arc toral</b></td><td>Cadascun dels quatre grans arcs sobre els pilars que sostenen la cúpula.</td></tr>
+      <tr><td><b>Cimaci</b></td><td>Peça troncopiramidal invertida sobre el capitell: alleugera el pes i dona alçada.</td></tr>
+      <tr><td><b>Columna coríntia</b></td><td>Columna de tradició romana (no és l'ordre corinti grec).</td></tr>
+      <tr><td><b>Volta de canó: parts</b></td><td><b>Salmer</b> (primera peça), <b>clau</b> (peça central de dalt), <b>intradós</b> (cara interior), <b>extradós</b> (cara exterior), <b>imposta</b> (on comença l'arc), <b>llum</b> (amplada entre suports), <b>eix</b> i <b>línia de clau</b>.</td></tr>
+      <tr><td><b>Empentes</b></td><td>Forces laterals d'una volta. A la volta d'aresta es concentren als quatre angles.</td></tr>
+    </table></div></div>
+  </details>
+
+  <details class="sec">
+    <summary><h2>Bizanci: escultura, mosaic i icones</h2></summary>
+    <div class="body"><div class="tbl"><table>
+      <tr><th>Terme</th><th>Definició</th></tr>
+      <tr><td><b>Escultura bizantina</b></td><td>S'allunya del model clàssic i oblida el nu. Destaquen l'orfebreria, els esmalts i sobretot els relleus de vori.</td></tr>
+      <tr><td><b>Díptic / tríptic / políptic</b></td><td>Plaques de vori de dues, tres o més parts, sovint commemoratives (díptics consulars).</td></tr>
+      <tr><td><b>Mosaic bizantí</b></td><td>Màxima expressió de l'art bizantí: cobreix murs, voltes i cúpules. Opus tessellatum i predilecció pel daurat.</td></tr>
+      <tr><td><b>Fons daurat</b></td><td>Situa els personatges fora del temps i de la realitat: simbolitza l'eternitat.</td></tr>
+      <tr><td><b>Hieratisme</b></td><td>Figures rígides, frontals, sense volum ni profunditat i sense expressió.</td></tr>
+      <tr><td><b>Pantocràtor</b></td><td>Crist en majestat, «totpoderós» (catedral de Cefalú).</td></tr>
+      <tr><td><b>Theotokos</b></td><td>La Verge Maria com a Mare de Déu.</td></tr>
+      <tr><td><b>Icona</b></td><td>Petita pintura sobre fusta amb imatges de Crist, la Mare de Déu o els sants.</td></tr>
+      <tr><td><b>Iconoclàstia</b></td><td>Destrucció i prohibició de les imatges religioses (726–843).</td></tr>
+      <tr><td><b>Mosaics de Justinià i Teodora</b></td><td>A San Vitale de Ravenna: els emperadors amb el seu seguici (temàtica civil).</td></tr>
+    </table></div></div>
+  </details>
+</section>
+
+<!-- ===== BLOC 2 ===== -->
+<section data-view="bloc2" hidden>
+  <div class="eyebrow">Bloc 2</div>
+  <h1>Les 5 obres obligatòries</h1>
+  <p class="lead">Cada obra està redactada com una resposta d'examen, apartat per apartat, d'unes 450 paraules. Les paraules en negreta són les que no poden faltar.</p>
+
+  <details class="sec" open><summary><h2>Panteó</h2><span class="tag">arquitectura religiosa</span></summary><div class="body">
+    <div class="lbl">1. Identificació i context</div>
+    <p><b>Identifica l'obra, l'autor i la cronologia.</b></p>
+    <p>Es tracta del Panteó de Roma, un <b>temple</b> dedicat a tots els déus. El primer edifici el va fer construir <b>Agripa</b> el 27 aC, però el que es conserva és la reconstrucció feta en temps de l'emperador <b>Adrià</b>, entre el <b>118 i el 125 dC</b>, atribuïda a <b>Apol·lodor de Damasc</b>. És d'estil <b>romà imperial</b>, fet de formigó (<b>opus caementicium</b>), maó, marbre i pedra. Es troba al <b>Camp de Mart</b>, a Roma.</p>
+    <p><b>Situa l'obra en el seu context històric i cultural.</b></p>
+    <p>Pertany a l'<b>Alt Imperi</b>, quan l'emperador concentra tot el poder i l'art es posa al servei de la propaganda. Adrià, de la dinastia <b>antonina</b>, és un emperador més pacifista que Trajà, dedicat a enfortir les fronteres. Reconstrueix el temple d'Agripa, destruït per dos incendis, i no hi posa el seu nom: hi manté la inscripció original d'Agripa.</p>
+    <div class="lbl">2. Anàlisi formal i estilística</div>
+    <p><b>Descriu les característiques formals de l'edifici.</b></p>
+    <p>L'edifici uneix dues parts. Al davant hi ha un <b>pòrtic</b> de tradició grega, <b>octàstil</b>, amb columnes <b>corínties</b> monolítiques de granit, un entaulament llis amb la inscripció i un <b>frontó</b> triangular. Un <b>cos de transició</b> l'uneix amb la <b>cel·la circular</b>, coberta per una enorme <b>cúpula semiesfèrica</b> de 43 m d'alçada que descansa sobre un <b>tambor</b> de murs molt gruixuts. Per alleugerir el pes, el formigó porta una pedra diferent a cada nivell: dura a baix, calcària al mig i <b>volcànica</b> a la cúpula. La cúpula està decorada amb <b>cassetons</b> (5 fileres de 28), que creen jocs de llum i ombra, i al centre té un <b>òcul</b> de gairebé 9 m que il·lumina i ventila l'interior. El mur de la cel·la s'obre en <b>nínxols i capelles</b> amb columnes i pilastres corínties. L'edifici combina, doncs, el sistema <b>arquitravat</b> del pòrtic amb el <b>voltat</b> de la cel·la, i crea un gran espai interior unitari i centralitzat.</p>
+    <div class="lbl">3. Significat i funció</div>
+    <p><b>Explica la importància històrica i artística de l'obra.</b></p>
+    <p>El tema és la seva tipologia: un temple dedicat a <b>tots els déus</b> (<i>pan</i>, tot; <i>theos</i>, déu). Els 7 nínxols estaven consagrats a les 7 divinitats celestials: Sol, Lluna, Mercuri, Venus, Mart, Júpiter i Saturn. A més de la funció <b>religiosa</b>, en tenia una de <b>propagandística</b>, perquè s'hi feien cerimònies polítiques i s'hi retia culte als emperadors divinitzats. La cúpula simbolitza la <b>volta celeste</b>, il·luminada pel sol de l'òcul, i fa de Roma el <b>centre de l'univers</b>; la seva solidesa expressa la seguretat i la grandesa de l'Imperi. El Panteó mostra l'<b>avenç tècnic</b> dels romans respecte dels grecs. Es va conservar perquè al segle VII es va convertir en església, i avui guarda la tomba de Rafael i dels reis d'Itàlia. Va inspirar les grans cúpules del <b>Renaixement</b>, com la del Duomo de Florència o la de Sant Pere del Vaticà, de Miquel Àngel, i l'arquitectura neoclàssica.</p>
+    <p class="tip">Compte: la fitxa tècnica de la presentació diu 118-128 dC i com a autors «Luci Cocceio Aucto / Apol·lodor de Damasc» (el primer és l'arquitecte de l'edifici d'Agripa). La resta de diapositives diuen 118-125 dC, i és la data que fem servir aquí.</p>
+  </div></details>
+
+  <details class="sec"><summary><h2>Colosseu</h2><span class="tag">arquitectura per a espectacles</span></summary><div class="body">
+    <div class="lbl">1. Identificació i context</div>
+    <p><b>Identifica l'obra, l'autor i la cronologia.</b></p>
+    <p>Es tracta de l'<b>Amfiteatre Flavi</b> o Colosseu, un edifici per a espectacles construït a Roma entre el <b>72 i el 80 dC</b>, d'estil <b>romà imperial</b> i d'autor desconegut. Està fet de formigó (<b>opus caementicium</b>), maó, pedra i travertí, i combina el sistema <b>arquitravat</b> amb el <b>voltat</b>. Es troba al costat del Fòrum de Roma.</p>
+    <p><b>Situa l'obra en el seu context històric i cultural.</b></p>
+    <p>Pertany a l'<b>Alt Imperi</b>, quan l'art és al servei de la propaganda imperial. El fa construir <b>Vespasià</b>, primer emperador de la dinastia <b>Flàvia</b>, per guanyar-se el poble després de la crisi de Neró, i l'aixeca sobre l'antiga <b>Casa Daurada</b> d'aquest emperador. <b>Titus</b> l'inaugura l'any 80 i <b>Domicià</b> hi afegeix el quart pis. El nom de Colosseu ve de l'<b>estàtua colossal de Neró</b> que hi havia al costat.</p>
+    <div class="lbl">2. Anàlisi formal i estilística</div>
+    <p><b>Descriu les característiques formals de l'edifici.</b></p>
+    <p>Té una planta <b>el·líptica</b> de 187 × 155 m, com dos teatres units per l'escena, i s'aixeca exempt enmig de la ciutat gràcies a l'enginyeria romana. La façana té quatre pisos. Els tres primers són <b>arcs de mig punt</b> sobre pilars amb <b>columnes adossades</b>, que hi tenen una funció decorativa, perquè el pes l'aguanten els arcs i les voltes. Els ordres se <b>superposen</b> de més robust a més lleuger: <b>dòric-toscà, jònic i corinti</b>. El quart pis o <b>àtic</b> és un mur massís amb pilastres corínties i finestres. Un <b>velarium</b> sostingut per màstils protegia el públic del sol.</p>
+    <p>A l'interior, la <b>càvea</b> envolta l'<b>arena</b> i s'aguanta sobre galeries amb voltes de formigó que reparteixen el pes. Hi cabien uns <b>50.000 espectadors</b>, distribuïts segons la seva categoria social. Sota l'arena, l'<b>hipogeu</b> acollia gladiadors, feres i maquinària.</p>
+    <div class="lbl">3. Significat i funció</div>
+    <p><b>Explica la importància històrica i artística de l'obra.</b></p>
+    <p>El tema és la seva tipologia: un <b>amfiteatre</b>, edifici públic on es feien lluites de gladiadors, caceres de feres (<b>venacions</b>) i, de vegades, <b>naumàquies</b>. A més d'entretenir el poble, tenia una funció <b>propagandística</b>: glorificar la dinastia Flàvia amb una imatge benefactora, seguint la política de <i><b>panem et circenses</b></i>. La càvea jerarquitzada reproduïa l'ordre social romà, i l'emperador presidia l'espectacle a la vista de tothom. Va ser el model dels amfiteatres de l'Imperi, i la seva superposició d'ordres sobre arcs va inspirar el <b>Renaixement</b>, com el Palazzo Rucellai d'Alberti. El seu mal estat es deu als terratrèmols i a l'ús que se'n va fer com a pedrera.</p>
+    <p class="tip">Compte: la presentació dona 70 o 72 dC per a l'inici de les obres i 80 o 81 dC per a la inauguració. Fes servir 72-80 dC, com a la fitxa tècnica.</p>
+  </div></details>
+
+  <details class="sec"><summary><h2>August de Prima Porta</h2><span class="tag">escultura · retrat</span></summary><div class="body">
+    <div class="lbl">1. Identificació i context</div>
+    <p><b>Identifica l'obra, l'autor i la cronologia.</b></p>
+    <p>Es tracta de l'<b>August de Prima Porta</b>, una escultura exempta d'autor <b>desconegut</b>, coneixedor de l'art grec. L'original de <b>bronze</b> és del <b>20 aC</b> i es va perdre; se'n conserva una <b>còpia en marbre</b> de cap al <b>14 dC</b>, originàriament policromada. És d'estil <b>romà imperial</b> i fa 2,04 m. Es va trobar el 1863 a la vil·la de Lívia, l'esposa d'August, a Prima Porta, i avui és als <b>Museus Vaticans</b>.</p>
+    <p><b>Situa l'obra en el seu context històric i cultural.</b></p>
+    <p>August, nebot de Juli Cèsar, acaba amb un segle de guerres civils i el <b>27 aC</b> el senat el proclama <b>primer emperador</b>. Funda la dinastia Júlia-Clàudia i instaura la <b>pax augusta</b>. Roma esdevé la ciutat més important de l'Imperi i hi arriben artistes grecs: és el <b>classicisme augustal</b>. August fa servir l'art com a <b>instrument polític</b>, i la seva imatge s'escampa per les províncies en estàtues i monedes.</p>
+    <div class="lbl">2. Anàlisi formal i estilística</div>
+    <p><b>Descriu les característiques formals de l'escultura.</b></p>
+    <p>És una escultura dempeus pensada per a una <b>visió frontal</b>: la part posterior està poc treballada, perquè es col·locava davant d'una paret o en un nínxol. August porta la indumentària d'un general: una <b>cuirassa</b> que marca l'anatomia, decorada amb <b>relleus</b>, i el <b>paludamentum</b>, la capa que li envolta la cintura i que sosté amb el braç esquerre juntament amb un ceptre. El <b>braç dret aixecat</b> és un gest d'autoritat: adreça un discurs a les tropes. La composició i les proporcions segueixen el model del <b>Dorífor</b> de Policlet, amb el <b>contrapposto</b>. Però, a diferència del model grec, el rostre no és una bellesa ideal: té les <b>faccions individuals</b> d'August, rejovenides, en un retrat psicològic que barreja autoritat i humanitat. El <b>realisme</b> es veu també als cabells, als plecs i al detall dels relleus. Als peus, un <b>Cupido sobre un dofí</b> fa de suport del marbre.</p>
+    <div class="lbl">3. Significat i funció</div>
+    <p><b>Explica la importància històrica i artística de l'obra.</b></p>
+    <p>El tema és un <b>retrat triomfal idealitzat</b> de l'emperador. Els relleus de la cuirassa exalten els seus èxits: Hispània i la Gàl·lia pacificades, la recuperació de l'estendard de l'àliga en mans dels parts, i a dalt el Cel i a baix la Terra, amb Diana i Apol·lo, protectors d'August. Té una funció <b>propagandística i política</b>: mostra el poder únic de l'emperador, la desaparició del senat i la pax augusta. També té una funció <b>religiosa</b>: la còpia és pòstuma i Lívia el fa representar <b>descalç</b>, senyal que ja és a l'Olimp (<b>divinització</b>), i el Cupido, fill de Venus, recorda l'<b>origen diví</b> de la dinastia Júlia, descendent d'Enees. La seva importància és que inaugura el <b>prototip de retrat de l'emperador dempeus</b>, molt imitat després.</p>
+  </div></details>
+
+  <details class="sec"><summary><h2>Columna Trajana</h2><span class="tag">escultura · relleu</span></summary><div class="body">
+    <div class="lbl">1. Identificació i context</div>
+    <p><b>Identifica l'obra, l'autor i la cronologia.</b></p>
+    <p>Es tracta de la <b>Columna Trajana</b>, obra d'<b>Apol·lodor de Damasc</b>, construïda entre el <b>107 i el 114 dC</b>. És un monument <b>commemoratiu</b> de marbre amb un <b>relleu</b>, de 40 m d'alçada i 4 m de diàmetre, d'estil <b>romà imperial</b>. Es troba al <b>Fòrum de Trajà</b>, a Roma.</p>
+    <p><b>Situa l'obra en el seu context històric i cultural.</b></p>
+    <p>Pertany a l'<b>Alt Imperi</b>, durant el regnat de <b>Trajà</b> (98-117 dC), un emperador d'origen militar de la dinastia antonina. En plena <b>pax romana</b>, l'Imperi arriba a la seva <b>màxima extensió</b> territorial. La columna, situada al fòrum que el mateix Trajà va construir, commemora la victòria en les dues <b>guerres de la Dàcia</b>, l'actual Romania. Apol·lodor va seguir l'exèrcit en aquestes campanyes.</p>
+    <div class="lbl">2. Anàlisi formal i estilística</div>
+    <p><b>Descriu les característiques formals de l'obra.</b></p>
+    <p>La columna s'aixeca sobre un <b>pedestal cúbic</b> amb relleus de trofeus militars i té una base amb una <b>corona de llorer</b>, un fust de <b>dotze tambors</b> de marbre i un <b>capitell dòric</b>. A dalt hi havia una estàtua de bronze de Trajà, substituïda al segle XVI per una de sant Pere. A l'interior hi ha una <b>escala de cargol</b>. El fust està cobert per un <b>baix relleu continu</b> que puja en <b>espiral</b> durant més de 200 m, amb 155 escenes i unes 2.500 figures. Les escenes segueixen un <b>ordre cronològic</b>, en una seqüència <b>quasi cinematogràfica</b>: la primera guerra a la meitat inferior i la segona a la superior. Perquè es vegi bé des de baix, la franja s'eixampla a mesura que puja, de 0,89 a 1,25 m. L'estil és <b>naturalista</b> i detallista: armes, màquines de setge i campaments. Els déus i el riu Danubi, representat com un ancià, tenen forma humana. Originàriament estava policromat.</p>
+    <div class="lbl">3. Significat i funció</div>
+    <p><b>Explica la importància històrica i artística de l'obra.</b></p>
+    <p>El tema és <b>commemoratiu i històric</b>: les campanyes de Trajà a la Dàcia. L'emperador hi apareix <b>59 vegades</b>, de manera realista i <b>no divinitzada</b>: és un soldat i un servidor de l'Estat que dirigeix la marxa i les construccions i lluita com un més, tot i que sempre és més gran que els altres. La columna té una doble funció: <b>propagandística</b>, perquè glorifica la conquesta, i <b>funerària</b>, perquè a la base hi havia la cambra amb les cendres de Trajà i la seva dona. És el <b>relleu més llarg de l'antiguitat</b> i un document gràfic sobre l'exèrcit romà. La columna historiada és una creació romana, tot i que la seqüència d'escenes té un precedent a l'Altar de Zeus de Pèrgam. Va servir de model per a les columnes d'Antoní Pius i de Marc Aureli i per a la Columna Vendôme de París, i la narració contínua la van adoptar els escultors cristians.</p>
+  </div></details>
+  <details class="sec"><summary><h2>Santa Sofia de Constantinoble</h2><span class="tag">Bizanci · arquitectura</span></summary><div class="body">
+    <div class="lbl">1. Identificació i context</div>
+    <p><b>Identifica l'obra, l'autor i la cronologia.</b></p>
+    <p>Es tracta de la basílica de <b>Santa Sofia</b> (Hagia Sophia, «Saviesa Divina») de <b>Constantinoble</b>, l'actual Istanbul. És obra de dos geòmetres, <b>Artemi de Tral·les i Isidor de Milet</b>, i es va construir entre el <b>532 i el 537</b>, durant el regnat de <b>Justinià</b>. És una <b>església</b> d'estil <b>bizantí</b>, de maó i marbre, amb l'interior decorat amb mosaics, que combina el sistema arquitravat amb el voltat.</p>
+    <p><b>Situa l'obra en el seu context històric i cultural.</b></p>
+    <p>Constantinoble, fundada per Constantí el 330, és la capital de l'<b>Imperi romà d'Orient</b>, que sobreviu mil anys a la caiguda de Roma (476), fins a la conquesta turca del 1453. Al segle VI, <b>Justinià i Teodora</b> porten Bizanci a la seva <b>primera edat d'or</b>. És un <b>imperi teocràtic</b>, on el poder civil i el religiós van units. L'església anterior, de Teodosi II, s'havia destruït en una revolta el 532, i Justinià n'aixeca una de nova per mostrar el seu poder.</p>
+    <div class="lbl">2. Anàlisi formal i estilística</div>
+    <p><b>Descriu les característiques formals de l'edifici.</b></p>
+    <p>Té una <b>planta basilical de tres naus</b>, amb un eix longitudinal que va del <b>nàrtex</b> a l'<b>absis</b>, però el centre és un gran espai cobert per una <b>cúpula</b>: combina la planta longitudinal i la centralitzada. <b>Quatre pilars</b> massissos delimiten un quadrat de 31 m. A sobre, quatre grans <b>arcs de mig punt</b> i quatre <b>petxines</b> fan el pas del quadrat al cercle on s'aixeca la <b>cúpula semiesfèrica</b>, de 31 m de diàmetre i més de 54 m d'alçada, unes mides inaudites a l'època. A l'est i a l'oest, dues <b>semicúpules</b> sostingudes per <b>exedres</b> ajuden a aguantar-la, i a fora hi ha <b>contraforts</b>. Les naus laterals tenen dos pisos d'arcades: el superior és una <b>tribuna</b>. A la base de la cúpula, <b>40 finestres</b> dibuixen un anell de llum que fa que sembli que <b>suri</b>. L'exterior és <b>auster</b>, de maó vermell, mentre que l'interior és d'una gran <b>riquesa</b>: marbres de colors, mosaics de fons daurat i capitells amb <b>cimaci</b>, tot pensat per reflectir la llum.</p>
+    <div class="lbl">3. Significat i funció</div>
+    <p><b>Explica la importància històrica i artística de l'obra.</b></p>
+    <p>El tema és la seva tipologia: una <b>església</b> dedicada a la <b>Saviesa Divina</b>, on segons la tradició es guardava un fragment de la vera creu. Tenia una funció <b>religiosa</b>, la litúrgia, i una de <b>política</b>: havia de fer ostentació del <b>poder suprem de l'emperador</b>. Per això estava al costat del <b>palau imperial i de l'hipòdrom</b>, prova de la unió entre el poder civil i el religiós. La cúpula simbolitza la <b>volta celeste</b>, i la llum crea una sensació d'irrealitat i d'espiritualitat. És la síntesi de la tradició <b>grecollatina</b> (planta basilical, pilars, grandària) i de la de l'<b>Àsia Menor</b> (espai central amb cúpula). Hi apareix per primer cop el <b>sistema de petxines a escala monumental</b>, que esdevindrà característic de l'art bizantí i de l'arquitectura occidental. Després del 1453 es va convertir en <b>mesquita</b>: s'hi van afegir quatre minarets i plafons amb inscripcions de l'Alcorà, i els mosaics es van tapar amb estuc. Va influir en esglésies com Santa Irene.</p>
+    <p class="tip">Compte: la fitxa tècnica dona 55,90 m d'alçada i l'anàlisi formal diu «més de 54 m». Totes dues dades són compatibles; amb «més de 54 m» no t'equivoques.</p>
+  </div></details>
+</section>
+
+<!-- ===== BLOC 3 ===== -->
+<section data-view="bloc3" hidden>
+  <div class="eyebrow">Bloc 3</div>
+  <h1>Comparar obres</h1>
+  <p class="lead">Primer, les idees clau de cada perspectiva; després, cinc comparacions preparades, moltes amb obres de Grècia, que pots adaptar a altres parelles.</p>
+  <div class="plan"><strong>Estructura de la resposta</strong>
+    <ol>
+      <li><b>Presenta</b> les dues obres en una frase cadascuna (títol, autor, època).</li>
+      <li><b>Semblances</b> des de la perspectiva que et demanen.</li>
+      <li><b>Diferències</b>, explicant-les pel context de cada època.</li>
+      <li><b>Conclusió</b>: què ens diuen les obres sobre la societat que les va fer.</li>
+    </ol>
+  </div>
+
+  <details class="sec" open><summary><h2>Perspectiva social i de poder</h2></summary><div class="body">
+    <ul class="k">
+      <li><b>Art al servei de l'emperador.</b> Les quatre obres són encàrrecs imperials amb funció <b>propagandística</b>: glorifiquen Adrià, la dinastia Flàvia, August i Trajà.</li>
+      <li><b>Panem et circenses</b>: el Colosseu ofereix espectacles gratuïts per tenir el poble content i allunyat de la política.</li>
+      <li><b>Jerarquia social</b>: a la càvea del Colosseu cadascú seu segons la seva categoria; a la ciutat, les famílies riques viuen en <b>domus</b> i la majoria, en <b>insulae</b> de lloguer.</li>
+      <li><b>Romanització</b>: la imatge de l'emperador (estàtues, monedes) i temples com la Maison Carrée s'escampen per les províncies per impressionar els pobles conquerits.</li>
+      <li><b>El poder es fa visible</b>: August parla a les tropes amb el braç aixecat; Trajà surt 59 vegades a la columna, sempre més gran que els altres.</li>
+      <li><b>L'artista</b>: l'art romà és majoritàriament <b>anònim</b> i l'obra s'atribueix a l'emperador que l'encarrega (Apol·lodor de Damasc és una excepció coneguda).</li>
+    </ul>
+  </div></details>
+
+  <details class="sec"><summary><h2>Perspectiva de gènere</h2></summary><div class="body">
+    <ul class="k">
+      <li><b>Un art d'homes</b>: emperadors, generals i soldats són els protagonistes (August, Trajà i el seu exèrcit, gladiadors).</li>
+      <li><b>Lívia, el poder a l'ombra</b>: l'esposa d'August fa representar-lo descalç (divinitzat) i, segons la presentació, al centre de la cuirassa hi apareix el seu fill Tiberi, per afavorir que fos el successor.</li>
+      <li><b>La dona com a origen diví</b>: Venus apareix al costat d'August (Cupido sobre el seu dofí) com a mare mítica de la dinastia Júlia, per legitimar el poder masculí.</li>
+      <li><b>Les províncies vençudes</b> es representen com a figures humanes; tradicionalment, com a dones sotmeses <span class="ext">per ampliar</span>.</li>
+      <li><b>Les dones al Colosseu</b> seien a les grades més altes, les més allunyades de l'arena, segons les lleis d'August sobre els espectacles <span class="ext">per ampliar</span>.</li>
+    </ul>
+  </div></details>
+
+  <details class="sec"><summary><h2>Perspectiva religiosa</h2></summary><div class="body">
+    <ul class="k">
+      <li><b>Religió i poder s'uneixen</b>: l'emperador mort es divinitza (Divus Augustus); al Panteó es retia culte als emperadors divinitzats.</li>
+      <li><b>El Panteó</b> és un temple per a <b>tots els déus</b> i una imatge del cosmos: la cúpula és la volta celeste i Roma, el centre de l'univers.</li>
+      <li><b>Grècia i Roma</b>: el temple grec (Partenó) es contempla des de fora; el Panteó crea un gran <b>espai interior</b> per als fidels gràcies a la cúpula.</li>
+      <li><b>Trajà no divinitzat</b>: a la columna apareix com un soldat més, tot i que la columna guardava les seves cendres.</li>
+    </ul>
+  </div></details>
+
+  <details class="sec"><summary><h2>Bizanci (Santa Sofia)</h2></summary><div class="body">
+    <ul class="k">
+      <li><b>Imperi teocràtic</b>: Santa Sofia, al costat del palau i de l'hipòdrom, uneix el poder civil i el religiós i exhibeix el poder de Justinià.</li>
+      <li><b>Llum i espiritualitat</b>: la cúpula que «sura» sobre un anell de finestres i els fons daurats creen un espai irreal, que remet a Déu.</li>
+      <li><b>Gènere</b>: a les basíliques, les dones seguien la litúrgia des de la <b>tribuna o matroneu</b>, al pis de dalt. Tot i així, l'emperadriu <b>Teodora</b> apareix amb el seu propi seguici als mosaics de San Vitale, al costat de Justinià.</li>
+      <li><b>Poder i imatge</b>: als voris imperials, la figura de Crist es combina amb la de l'emperador per mostrar que la seva autoritat ve de Déu.</li>
+    </ul>
+  </div></details>
+
+  <h2 style="margin-top:26px">Comparacions preparades</h2>
+
+  <div class="obra"><h3>Panteó i Santa Sofia · religiosa i de l'espai</h3>
+    <div class="lbl">Semblances</div><p>Tots dos són temples coberts per una gran <b>cúpula</b> que simbolitza la <b>volta celeste</b>, il·luminats des de dalt, i en tots dos es cuida més l'interior que l'exterior. Tots dos mostren el poder de l'emperador que els aixeca (Adrià i Justinià).</p>
+    <div class="lbl">Diferències</div><p>El Panteó és un temple pagà per a tots els déus. La cúpula descansa sobre un <b>tambor circular</b> i té un sol <b>òcul</b>, i l'espai és <b>estàtic</b>, ordenat i proporcionat; la decoració està lligada a l'estructura. Santa Sofia és una <b>església cristiana</b>. La cúpula descansa sobre <b>petxines</b> damunt d'un quadrat i té un anell de 40 finestres, i l'espai és <b>continu i dinàmic</b>, amb semicúpules que suggereixen l'infinit. Els marbres i els mosaics daurats cobreixen l'estructura com una màscara.</p>
+    <div class="lbl">Conclusió</div><p>Es passa de l'ordre racional romà, que fa de Roma el centre del món, a un espai espiritual que vol acostar el fidel a Déu en un imperi on religió i poder són el mateix.</p>
+  </div>
+
+  <div class="obra"><h3>Colosseu i Santa Sofia · social i de gènere</h3>
+    <div class="lbl">Semblances</div><p>Tots dos són grans encàrrecs imperials pensats per a multituds i per mostrar el poder de l'emperador. En tots dos, l'espai reflecteix la jerarquia social, i les dones queden als pisos de dalt.</p>
+    <div class="lbl">Diferències</div><p>Al Colosseu, el públic s'ordena a la càvea segons la seva categoria i, segons les lleis d'August, les dones seien a les grades més altes <span class="ext">per ampliar</span>; l'objectiu és entretenir (<i>panem et circenses</i>). A les basíliques bizantines, les dones seguien la litúrgia des del <b>matroneu</b>, i a Santa Sofia la tribuna era per als alts càrrecs; l'objectiu és religiós i polític alhora. L'emperadriu Teodora, però, té un paper visible al costat de Justinià.</p>
+    <div class="lbl">Conclusió</div><p>Tant a Roma com a Bizanci, l'arquitectura separa i ordena la societat, i les dones en general hi tenen un lloc secundari, tret de les que pertanyen al poder.</p>
+  </div>
+
+  <div class="obra"><h3>Partenó i Panteó · religiosa i de poder</h3>
+    <div class="lbl">Semblances</div><p>Tots dos són temples monumentals, encarregats pel poder (Pèricles i Adrià) i que expressen la grandesa de la seva ciutat. El Panteó fa servir un pòrtic d'inspiració grega, amb columnes i frontó.</p>
+    <div class="lbl">Diferències</div><p>El Partenó (s. V aC) és un temple <b>dòric</b> dedicat a una sola deessa, Atena, pensat per ser vist <b>des de fora</b>, amb el sistema <b>arquitravat</b>. El Panteó (s. II dC) és per a <b>tots els déus</b>, té columnes corínties i, gràcies al formigó i al sistema <b>voltat</b>, crea un immens <b>espai interior</b> amb una cúpula que simbolitza el cosmos.</p>
+    <div class="lbl">Conclusió</div><p>El Partenó celebra la polis d'Atenes i la seva patrona; el Panteó, un imperi universal que es vol centre del món, i mostra l'avenç tècnic de Roma respecte de Grècia.</p>
+  </div>
+
+  <div class="obra"><h3>Dorífor i August de Prima Porta · el cos i el poder</h3>
+    <div class="lbl">Semblances</div><p>L'August copia la composició, les proporcions i el <b>contrapposto</b> del Dorífor. Totes dues són escultures exemptes masculines, conegudes per còpies en marbre d'originals de bronze.</p>
+    <div class="lbl">Diferències</div><p>El Dorífor és un <b>nu ideal</b> d'atleta, sense identitat concreta: il·lustra un cànon de bellesa. L'August va <b>vestit de general</b>, té un rostre <b>individualitzat</b> i realista, fa un gest d'autoritat i està ple de símbols polítics (relleus de la cuirassa) i religiosos (Cupido, peus descalços).</p>
+    <div class="lbl">Conclusió</div><p>Roma agafa la bellesa grega i la posa al servei del poder d'una sola persona: de l'ideal del ciutadà de la polis es passa a la propaganda de l'emperador.</p>
+  </div>
+
+  <div class="obra"><h3>Teatre d'Epidaure i Colosseu · social</h3>
+    <div class="lbl">Semblances</div><p>Tots dos són edificis per a espectacles, amb grades (càvea) per a milers de persones i una distribució pensada perquè tothom hi vegi bé.</p>
+    <div class="lbl">Diferències</div><p>Epidaure aprofita el <b>pendent d'un turó</b>, és semicircular, acull unes 14.000 persones i hi veuen teatre lligat al culte a Dionís, amb una funció <b>cívica i educativa</b>. El Colosseu s'aixeca <b>exempt</b> gràcies a arcs i voltes, és el·líptic, hi caben 50.000 persones i ofereix <b>lluites sagnants</b> regalades per l'emperador.</p>
+    <div class="lbl">Conclusió</div><p>El teatre grec forma el ciutadà; l'amfiteatre romà entreté la massa i la manté lluny de la política (<i>panem et circenses</i>), amb el públic ordenat segons la jerarquia social.</p>
+  </div>
+
+  <div class="obra"><h3>Fris del Partenó i Columna Trajana · narració i propaganda</h3>
+    <div class="lbl">Semblances</div><p>Tots dos són grans relleus narratius, originàriament policromats, que exalten la seva comunitat i formen part d'un monument públic.</p>
+    <div class="lbl">Diferències</div><p>El fris de les Panatenees mostra una <b>processó religiosa idealitzada</b>, sense personatges concrets. La Columna Trajana narra <b>fets històrics reals</b> (les guerres de la Dàcia) en un relleu continu en espiral, amb un protagonista concret, l'emperador, que hi apareix 59 vegades, i un detall gairebé documental.</p>
+    <div class="lbl">Conclusió</div><p>Grècia celebra la ciutat i els seus déus; Roma, la història i les victòries d'un emperador, amb un gust pel realisme i per la propaganda.</p>
+  </div>
+
+  <div class="obra"><h3>Venus de Cnido i August de Prima Porta · gènere</h3>
+    <div class="lbl">Semblances</div><p>Totes dues parteixen del contrapposto grec i tenen una dimensió divina: la Venus és una deessa, i l'August apareix divinitzat, amb Cupido, fill de Venus, al costat.</p>
+    <div class="lbl">Diferències</div><p>La Venus és un <b>nu femení</b> en una escena íntima (el bany), pensada per ser <b>mirada</b>. L'August és un <b>home vestit de general</b>, en una escena pública, que <b>parla i mana</b>. A l'August, la figura femenina (Venus) només hi és com a mare mítica que legitima la dinastia.</p>
+    <div class="lbl">Conclusió</div><p>Les dues obres mostren els rols de gènere antics: l'home ocupa l'espai públic, el poder i la paraula; la dona, la bellesa i la mirada dels altres.</p>
+  </div>
+</section>
+
+<!-- ============ JOC PARTS ============ -->
+<section data-view="parts" hidden>
+  <div class="eyebrow">Joc 1 · Bloc 1</div>
+  <h1>Identifica les parts</h1>
+  <p class="lead">Tria un esquema. A <b>Estudia</b> veus tots els noms; a <b>Juga</b> has de tocar el número de la part que et demanen.</p>
+  <div class="picker" id="dpicker"></div>
+  <div class="panel">
+    <div class="gamebar">
+      <div class="prompt" id="dprompt"></div>
+      <span class="score" id="dscore"></span>
+      <button class="btn ghost" id="dstudy" type="button">Estudia</button>
+      <button class="btn" id="dplay" type="button">Juga</button>
+    </div>
+    <div class="diagram" id="dsvg"></div>
+    <div class="feedback" id="dfeed" aria-live="polite"></div>
+    <ul class="legend" id="dlegend"></ul>
+  </div>
+</section>
+
+<!-- ============ JOC EDIFICIS ============ -->
+<section data-view="tipologies" hidden>
+  <div class="eyebrow">Joc 2 · Bloc 1</div>
+  <h1>Classifica l'edifici</h1>
+  <p class="lead">Llegeix la descripció i respon les dues preguntes. Els grups són els de l'esquema «Edificis romans» de la presentació.</p>
+  <div class="panel">
+    <div class="score" id="tscore">0 encerts de 0</div>
+    <div class="card" id="tdesc"></div>
+    <p class="qtext">Quin <b>tipus d'edifici</b> és?</p>
+    <div class="opts" id="topt1"></div>
+    <p class="qtext">A quin <b>grup</b> pertany?</p>
+    <div class="opts" id="topt2"></div>
+    <div class="feedback" id="tfeed" aria-live="polite"></div>
+    <button class="btn" id="tnext" type="button">Un altre edifici</button>
+  </div>
+</section>
+
+<!-- ============ TEST ============ -->
+<section data-view="vf" hidden>
+  <div class="eyebrow">Joc 3</div>
+  <h1>Veritat o fals</h1>
+  <p class="lead">Com a l'examen. Si l'afirmació és falsa, llegeix per què: a l'examen sovint t'ho demanen corregir.</p>
+  <div class="picker" id="qfilter">
+    <button type="button" data-f="tot" aria-pressed="true">Tot</button>
+    <button type="button" data-f="arq" aria-pressed="false">Només arquitectura</button>
+    <button type="button" data-f="esc" aria-pressed="false">Només escultura i pintura</button>
+    <button type="button" data-f="biz" aria-pressed="false">Només Bizanci</button>
+  </div>
+  <div class="panel">
+    <div class="score" id="qscore"></div>
+    <div class="progress"><i id="qbar"></i></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="opts" id="qopts"></div>
+    <div id="qexpl"></div>
+    <div style="margin-top:12px"><button class="btn" id="qnext" type="button" hidden>Següent</button></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const store={get(k){try{return localStorage.getItem("roma-"+k)}catch(e){return null}},set(k,v){try{localStorage.setItem("roma-"+k,v)}catch(e){}}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* ---------- pestanyes ---------- */
+const views=["pla","bloc1","bloc2","bloc3","parts","tipologies","vf"];
+function show(v){
+  if(!views.includes(v)) v="pla";
+  $$("[data-view]").forEach(s=>s.hidden=s.dataset.view!==v);
+  $$("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===v?"true":"false"));
+  try{history.replaceState(null,"","#"+v)}catch(e){}
+  window.scrollTo(0,0);
+}
+$$("nav.tabs button").forEach(b=>b.addEventListener("click",()=>show(b.dataset.tab)));
+window.addEventListener("hashchange",()=>show(location.hash.slice(1)));
+
+/* ---------- DIAGRAMES ---------- */
+// cada part: [nom, ax, ay, mx, my, pista]  (a = punt de la part, m = marcador)
+function arcOpen(x1,x2,bottom,spring){const r=(x2-x1)/2;return `<path class="room" d="M${x1} ${bottom} V${spring} A${r} ${r} 0 0 1 ${x2} ${spring} V${bottom} Z"/>`}
+function colFacade(){
+  const B=[70,130,190,250,310,370];
+  let s='<line class="ln" x1="10" y1="300" x2="450" y2="300"/>';
+  const tiers=[{b:300,t:240,sp:266,cap:"dor"},{b:232,t:178,sp:204,cap:"jon"},{b:170,t:116,sp:142,cap:"cor"}];
+  tiers.forEach((T,k)=>{
+    s+=`<rect class="st" x="70" y="${T.t}" width="300" height="${T.b-T.t}"/>`;
+    for(let i=0;i<5;i++){
+      s+=arcOpen(B[i]+9,B[i]+51,T.b,T.sp);
+      if(k>0){const cx=B[i]+30;s+=`<circle class="dot" cx="${cx}" cy="${T.sp-6}" r="3"/><rect class="dot" x="${cx-3}" y="${T.sp-3}" width="6" height="16"/>`}
+    }
+    B.forEach(b=>{
+      s+=`<rect class="st2" x="${b-4}" y="${T.t+4}" width="8" height="${T.b-T.t-4}"/>`;
+      if(T.cap==="jon")s+=`<circle class="st2" cx="${b-4}" cy="${T.t+6}" r="2.5"/><circle class="st2" cx="${b+4}" cy="${T.t+6}" r="2.5"/>`;
+      if(T.cap==="cor")s+=`<path class="st2" d="M${b-6} ${T.t+4} l2 8 h8 l2 -8 z"/>`;
+      if(T.cap==="dor")s+=`<rect class="st2" x="${b-6}" y="${T.t+4}" width="12" height="4"/>`;
+    });
+    s+=`<rect class="st3" x="66" y="${T.t-8}" width="308" height="8"/>`;
+  });
+  // àtic
+  s+='<rect class="st" x="70" y="56" width="300" height="52"/>';
+  B.forEach(b=>s+=`<rect class="st2" x="${b-3}" y="56" width="6" height="52"/>`);
+  [0,2,4].forEach(i=>s+=`<rect class="room" x="${B[i]+24}" y="70" width="12" height="14"/>`);
+  [1,3].forEach(i=>s+=`<circle class="gd" cx="${B[i]+30}" cy="92" r="6"/>`);
+  s+='<rect class="st3" x="64" y="50" width="312" height="6"/>';
+  [100,160,220,280,340].forEach(x=>s+=`<line stroke="var(--dark)" stroke-width="2" x1="${x}" y1="50" x2="${x}" y2="24"/>`);
+  return {vb:"0 0 460 330",svg:s,hs:[
+    ["Màstils del velarium",340,30,430,26,"Sostenien el tendal que protegia el públic"],
+    ["Àtic (4t pis)",280,62,430,62,"Mur massís afegit per Domicià"],
+    ["Pilastres corínties",370,96,430,96,"Pilars adossats de l'àtic"],
+    ["Ordre corinti (3r pis)",374,140,430,138,"El més lleuger, a dalt"],
+    ["Entaulament",360,174,430,176,"Faixa horitzontal que separa els pisos"],
+    ["Ordre jònic (2n pis)",374,206,430,212,"Ordre intermedi"],
+    ["Ordre dòric-toscà (planta baixa)",374,272,430,272,"El més robust, a baix"],
+    ["Finestra rectangular",100,77,28,72,"Obertures de l'àtic"],
+    ["Escut de bronze daurat",160,92,28,108,"Decoració de l'àtic"],
+    ["Estàtua als arcs",160,190,28,190,"Dignataris i emperadors al 2n i 3r pis"],
+    ["Arc de mig punt",100,248,28,240,"Aguanta realment el pes"],
+    ["Columna adossada",130,286,28,286,"Funció decorativa"],
+    ["Accés (un dels 80)",220,290,220,318,"Distribuïen el públic cap a les escales"]
+  ]};
+}
+function colSection(){
+  let left='';
+  left+='<rect class="st" x="30" y="70" width="16" height="150"/>';
+  let pts='46,88 ';
+  for(let k=0;k<10;k++){const x=46+k*13,y=88+k*11.2;pts+=`${x},${y} ${x+13},${y} `;pts+=`${x+13},${y+11.2} `}
+  pts+='176,200 176,220 46,220';
+  left+=`<polygon class="st" points="${pts}"/>`;
+  left+='<rect class="st3" x="46" y="88" width="26" height="12"/>';
+  [[60,200,215,6],[60,160,180,4],[54,122,140,2]].forEach(([x0,top,bot,n])=>{for(let i=0;i<n;i++){const x=x0+i*18;left+=`<path class="room" d="M${x} ${bot} V${top+6} A6 6 0 0 1 ${x+12} ${top+6} V${bot} Z"/>`}});
+  left+='<line stroke="var(--dark)" stroke-width="2" x1="38" y1="70" x2="38" y2="48"/>';
+  left+='<path fill="none" stroke="var(--ochre)" stroke-width="2" stroke-dasharray="5 3" d="M38 50 Q130 62 214 92"/>';
+  let s='<rect class="gr" x="0" y="220" width="460" height="80"/>';
+  s+=left+`<g transform="translate(460 0) scale(-1 1)">${left}</g>`;
+  s+='<rect class="room" x="176" y="222" width="108" height="48"/>';
+  [194,212,248,266].forEach(x=>s+=`<line class="ln" x1="${x}" y1="222" x2="${x}" y2="270"/>`);
+  s+='<line class="ln" x1="176" y1="246" x2="212" y2="246"/><line class="ln" x1="248" y1="246" x2="284" y2="246"/>';
+  s+='<rect class="gd" x="225" y="224" width="10" height="44"/>';
+  s+='<rect class="gd" x="176" y="214" width="108" height="6" style="fill:var(--earth)"/>';
+  s+='<line class="ln" x1="0" y1="220" x2="460" y2="220"/>';
+  return {vb:"0 0 460 300",svg:s,hs:[
+    ["Velarium",130,64,130,30,"Tendal estès des dels màstils"],
+    ["Màstils",38,58,22,40,"Fixaven el velarium amb politges"],
+    ["Grades altes de fusta",58,94,22,96,"Les més allunyades de l'arena"],
+    ["Façana exterior",38,150,22,150,"Mur de quatre pisos"],
+    ["Galeries amb voltes",90,207,22,206,"Aguanten la càvea i reparteixen el pes"],
+    ["Càvea",352,160,352,160,"Graderia per a uns 50.000 espectadors"],
+    ["Grades baixes (elit)",168,192,140,250,"Les més properes a l'arena"],
+    ["Arena",230,214,230,140,"Pista de sorra de 74 × 46 m"],
+    ["Hipogeu",200,256,196,286,"Passadissos i cambres per a gladiadors i feres"],
+    ["Ascensor de politges",230,250,268,286,"Pujava les feres a l'arena"]
+  ]};
+}
+function pantheon(){
+  const cx=310,cy=190;
+  let s='<line class="ln" x1="10" y1="300" x2="450" y2="300"/>';
+  s+=`<path class="st" d="M190 ${cy} A120 120 0 0 1 430 ${cy} L416 ${cy} A106 106 0 0 0 204 ${cy} Z"/>`;
+  for(let a=192;a<=348;a+=12){if(Math.abs(a-270)<7)continue;const r1=98,r2=106,c=Math.cos(a*Math.PI/180),sn=Math.sin(a*Math.PI/180);s+=`<line class="ln2" x1="${cx+r1*c}" y1="${cy+r1*sn}" x2="${cx+r2*c}" y2="${cy+r2*sn}"/>`}
+  s+=`<path class="ln2" d="M212 ${cy} A98 98 0 0 1 408 ${cy}"/>`;
+  s+='<rect x="301" y="66" width="18" height="22" fill="var(--bg)"/>';
+  s+='<line class="ln" x1="301" y1="71" x2="301" y2="85"/><line class="ln" x1="319" y1="71" x2="319" y2="85"/>';
+  s+='<path fill="none" stroke="var(--ochre)" stroke-width="1.5" stroke-dasharray="4 4" d="M303 88 L270 298 M317 88 L350 298"/>';
+  s+='<rect class="st" x="190" y="190" width="14" height="110"/><rect class="st" x="416" y="190" width="14" height="110"/>';
+  s+='<rect class="st2" x="196" y="238" width="8" height="54"/><rect class="st2" x="416" y="238" width="8" height="54"/>';
+  s+='<line class="ln2" x1="204" y1="226" x2="416" y2="226"/>';
+  s+='<rect class="st" x="166" y="150" width="24" height="150"/><polygon class="st" points="164,150 192,150 178,138"/>';
+  s+='<rect class="st3" x="30" y="186" width="136" height="14"/>';
+  s+='<text x="98" y="196" font-size="5.5" text-anchor="middle" fill="var(--dark)">M·AGRIPPA·L·F·COS·TERTIVM·FECIT</text>';
+  s+='<polygon class="st" points="30,186 166,186 98,152"/>';
+  [36,62,88,114,140].forEach(x=>{s+=`<rect class="st2" x="${x}" y="206" width="12" height="94"/><rect class="st3" x="${x-2}" y="200" width="16" height="6"/>`});
+  s+='<rect class="st2" x="24" y="300" width="148" height="6"/>';
+  return {vb:"0 0 460 330",svg:s,hs:[
+    ["Òcul",310,76,310,30,"Obertura de gairebé 9 m que il·lumina i ventila"],
+    ["Cúpula semiesfèrica",395,104,440,62,"43 m d'alçada; pedra volcànica, més lleugera"],
+    ["Cassetons",222,140,140,104,"5 fileres de 28: jocs de llum i ombra"],
+    ["Tambor (cel·la circular)",423,210,445,205,"Murs gruixuts que aguanten la cúpula"],
+    ["Nínxols i capelles",410,264,445,290,"Consagrats a les 7 divinitats celestials"],
+    ["Espai interior unitari",310,246,310,246,"Planta circular i simètrica"],
+    ["Cos de transició",178,175,184,116,"Uneix el pòrtic amb la rotonda"],
+    ["Frontó",98,172,40,134,"Frontó triangular, sense decoració"],
+    ["Inscripció d'Agripa",98,193,22,193,"«M. Agrippa... fecit»"],
+    ["Pòrtic octàstil",70,250,22,252,"Pronaos de tradició grega"],
+    ["Columnes corínties de granit",146,262,146,318,"Monolítiques, de 18 m"]
+  ]};
+}
+function vaults(){
+  let s='<line class="ln" x1="8" y1="220" x2="452" y2="220"/>';
+  // arc de mig punt
+  s+='<rect class="st" x="20" y="120" width="16" height="100"/><rect class="st" x="84" y="120" width="16" height="100"/>';
+  s+='<path class="st" d="M20 120 A40 40 0 0 1 100 120 L84 120 A24 24 0 0 0 36 120 Z"/>';
+  for(let a=200;a<=340;a+=20){const c=Math.cos(a*Math.PI/180),sn=Math.sin(a*Math.PI/180);s+=`<line class="ln2" x1="${60+24*c}" y1="${120+24*sn}" x2="${60+40*c}" y2="${120+40*sn}"/>`}
+  // volta de canó
+  s+='<path class="st2" d="M162 125 A32 32 0 0 1 226 125 V205 H218 V125 A24 24 0 0 0 170 125 V205 H162 Z"/>';
+  s+='<line class="ln" x1="172" y1="108" x2="194" y2="93"/><line class="ln" x1="204" y1="140" x2="226" y2="125"/><line class="ln" x1="204" y1="220" x2="226" y2="205"/>';
+  s+='<path class="st" d="M140 140 A32 32 0 0 1 204 140 V220 H196 V140 A24 24 0 0 0 148 140 V220 H140 Z"/>';
+  // volta d'aresta
+  s+='<path class="ln" d="M281 135 A24 24 0 0 1 329 135"/><rect class="st2" x="277" y="135" width="6" height="70"/><rect class="st2" x="327" y="135" width="6" height="70"/>';
+  s+='<path class="st" d="M253 150 A32 32 0 0 1 317 150 V220 H309 V150 A24 24 0 0 0 261 150 V220 H253 Z"/>';
+  s+='<path fill="none" stroke="var(--lapis)" stroke-width="2" d="M261 150 Q295 95 329 135 M309 150 Q295 95 281 135"/>';
+  // cúpula
+  s+='<rect class="st" x="365" y="160" width="80" height="60"/><path class="st" d="M365 160 A40 40 0 0 1 445 160 Z"/>';
+  s+='<rect class="room" x="400" y="118" width="10" height="4"/>';
+  [380,405,430].forEach(x=>s+=`<rect class="room" x="${x-5}" y="180" width="10" height="20"/>`);
+  return {vb:"0 0 460 260",svg:s,hs:[
+    ["Arc de mig punt",60,84,60,40,"Semicircular, heretat dels etruscs"],
+    ["Pilar",28,190,28,242,"Suport vertical de l'arc"],
+    ["Volta de canó",183,101,180,40,"Arc de mig punt allargat"],
+    ["Volta d'aresta",305,122,305,40,"Encreuament de dues voltes de canó"],
+    ["Aresta (línia d'encreuament)",286,128,262,242,"On es troben les dues voltes"],
+    ["Cúpula",405,128,405,72,"Coberta semiesfèrica"],
+    ["Tambor",420,200,420,242,"Mur cilíndric que aguanta la cúpula"]
+  ]};
+}
+function trajan(){
+  let s='<line class="ln" x1="80" y1="310" x2="380" y2="310"/>';
+  s+='<rect class="st" x="180" y="252" width="100" height="58"/>';
+  [[196,268],[262,268]].forEach(([x,y])=>s+=`<circle class="st3" cx="${x}" cy="${y}" r="7"/><line class="ln" x1="${x-8}" y1="${y+16}" x2="${x+8}" y2="${y+28}"/><line class="ln" x1="${x+8}" y1="${y+16}" x2="${x-8}" y2="${y+28}"/>`);
+  s+='<rect class="room" x="222" y="282" width="16" height="28"/>';
+  s+='<rect class="st2" x="204" y="240" width="52" height="12" rx="6"/>';
+  for(let x=210;x<252;x+=7)s+=`<ellipse class="st3" cx="${x}" cy="246" rx="3" ry="4"/>`;
+  s+='<rect class="st" x="210" y="72" width="40" height="168"/>';
+  let y=236,step=11;
+  while(y>78){s+=`<line class="ln2" x1="210" y1="${y}" x2="250" y2="${y-9}"/>`;y-=step;step=Math.min(18,step+0.5)}
+  s+='<polygon class="st" points="208,72 252,72 258,62 202,62"/><rect class="st" x="200" y="56" width="60" height="6"/>';
+  s+='<rect class="st" x="214" y="46" width="32" height="10"/>';
+  s+='<rect class="gd" x="225" y="25" width="10" height="21"/><circle class="gd" cx="230" cy="20" r="5"/>';
+  return {vb:"0 0 460 330",svg:s,hs:[
+    ["Estàtua (avui sant Pere)",235,30,330,22,"Abans hi havia la de Trajà, de bronze"],
+    ["Capitell dòric",256,66,330,62,"Remata el fust"],
+    ["Franja més ampla a dalt (1,25 m)",248,92,330,100,"S'eixampla perquè es vegi des de baix"],
+    ["Relleu continu en espiral",248,160,330,150,"155 escenes i 2.500 figures, en ordre cronològic"],
+    ["Franja més estreta a baix (0,89 m)",248,226,330,214,"La part més propera a l'espectador"],
+    ["Base amb corona de llorer",256,246,330,252,"D'on surten els relleus"],
+    ["Pedestal amb trofeus",272,272,330,290,"Relleus de trofeus militars"],
+    ["Porta de la cambra funerària",222,296,130,300,"Cendres de Trajà i la seva dona"],
+    ["Fust de 12 tambors",212,120,130,110,"Blocs de marbre col·locats amb politges"],
+    ["Escala de cargol (interior)",226,180,130,180,"Puja per dins de la columna"]
+  ]};
+}
+function augustus(){
+  let s='<rect class="st2" x="150" y="306" width="160" height="18"/>';
+  // cames
+  s+='<polygon class="st" points="210,176 226,176 222,300 206,300"/>';
+  s+='<polygon class="st" points="236,176 252,176 262,236 258,296 244,296 246,240"/>';
+  s+='<ellipse class="st" cx="212" cy="302" rx="11" ry="4"/><ellipse class="st" cx="253" cy="297" rx="10" ry="4"/>';
+  // Cupido sobre dofí
+  s+='<path class="st3" d="M168 304 C160 280 176 262 194 258 C188 270 186 286 198 304 Z"/>';
+  s+='<circle class="st" cx="190" cy="246" r="6"/><rect class="st" x="185" y="251" width="10" height="12" rx="3"/>';
+  // faldar i pteruges
+  s+='<polygon class="st" points="210,150 252,150 256,180 206,180"/>';
+  for(let x=210;x<252;x+=7)s+=`<line class="ln2" x1="${x}" y1="152" x2="${x}" y2="168"/>`;
+  // cuirassa
+  s+='<path class="st" d="M204 74 H256 L252 150 H210 Z"/>';
+  s+='<circle class="ln" cx="230" cy="110" r="9"/><path class="ln2" d="M212 92 q18 8 36 0 M214 136 q16 -6 32 0"/><circle class="ln2" cx="214" cy="118" r="4"/><circle class="ln2" cx="246" cy="118" r="4"/>';
+  // braç dret aixecat
+  s+='<polygon class="st" points="212,76 165,22 155,30 202,84"/><circle class="st" cx="158" cy="23" r="7"/>';
+  // braç esquerre i ceptre
+  s+='<polygon class="st" points="252,76 262,80 272,138 262,140"/>';
+  s+='<line stroke="var(--dark)" stroke-width="3" x1="276" y1="120" x2="280" y2="304"/>';
+  // paludamentum
+  s+='<path class="st3" d="M206 150 C226 160 252 150 270 136 L288 210 C278 218 268 214 262 204 L258 160 C240 168 222 166 206 156 Z"/>';
+  // cap
+  s+='<rect class="st" x="224" y="62" width="12" height="12"/><circle class="st" cx="230" cy="50" r="14"/><path class="ln2" d="M218 44 q12 -10 24 0"/>';
+  return {vb:"0 0 460 340",svg:s,hs:[
+    ["Rostre individualitzat",232,50,330,40,"Faccions reals d'August, rejovenides"],
+    ["Braç dret aixecat",168,34,100,40,"Gest d'autoritat: parla a les tropes"],
+    ["Cuirassa amb relleus",236,106,330,100,"Hispània, Gàl·lia, l'estendard recuperat, el Cel i la Terra"],
+    ["Paludamentum (capa)",276,184,330,170,"Capa de general que sosté amb el braç esquerre"],
+    ["Ceptre",279,250,330,236,"Símbol de poder"],
+    ["Cama relaxada",258,262,330,286,"Va endarrere: contrapposto"],
+    ["Cama de suport",214,250,100,236,"Aguanta el pes del cos"],
+    ["Peus descalços",210,302,100,312,"Divinització: ja és a l'Olimp"],
+    ["Cupido sobre un dofí",190,248,100,180,"Origen diví de la dinastia (Venus) i suport del marbre"]
+  ]};
+}
+function domus(){
+  let s='<rect class="st" x="40" y="30" width="380" height="240"/>';
+  s+='<rect class="room" x="40" y="132" width="44" height="36"/>';
+  s+='<rect class="room" x="84" y="64" width="116" height="172"/>';
+  s+='<rect class="wt" x="124" y="128" width="36" height="44"/>';
+  [92,120,148,176].forEach(x=>{s+=`<rect class="room" x="${x}" y="36" width="24" height="24"/><rect class="room" x="${x}" y="240" width="24" height="24"/>`});
+  s+='<rect class="room" x="206" y="36" width="44" height="80"/><rect class="st3" x="214" y="56" width="28" height="12"/><rect class="st3" x="214" y="84" width="28" height="12"/>';
+  s+='<rect class="room" x="206" y="122" width="44" height="56"/>';
+  s+='<rect class="room" x="256" y="40" width="120" height="220"/><rect class="gr" x="276" y="60" width="80" height="180"/>';
+  for(let y=50;y<=250;y+=20){s+=`<circle class="dot" cx="266" cy="${y}" r="3"/><circle class="dot" cx="366" cy="${y}" r="3"/>`}
+  for(let x=286;x<=346;x+=20){s+=`<circle class="dot" cx="${x}" cy="50" r="3"/><circle class="dot" cx="${x}" cy="250" r="3"/>`}
+  s+='<rect class="gd" x="340" y="226" width="12" height="10"/>';
+  s+='<rect class="room" x="382" y="110" width="38" height="80"/>';
+  s+='<text x="20" y="128" font-size="10" fill="var(--muted)">entrada</text><path class="ln" d="M14 150 h22 m-6 -5 l6 5 l-6 5"/>';
+  return {vb:"0 0 460 300",svg:s,hs:[
+    ["Vestíbul",62,150,62,190,"Entrada a la casa"],
+    ["Atri",100,90,100,90,"Pati cobert, centre de la casa"],
+    ["Impluvi",142,150,142,150,"Bassa que recull l'aigua de pluja"],
+    ["Compluvi",150,132,142,290,"Obertura del sostre sobre l'impluvi"],
+    ["Triclini",228,62,228,12,"Menjador, amb llits per menjar estirats"],
+    ["Peristil",316,140,316,140,"Jardí envoltat de columnes"],
+    ["Larari",346,231,316,288,"Petit altar dels déus familiars"],
+    ["Exedra",401,150,440,150,"Sala oberta al peristil"]
+  ]};
+}
+function sofiaSection(){
+  let s='<rect class="gr" x="0" y="290" width="460" height="30"/><line class="ln" x1="0" y1="290" x2="460" y2="290"/>';
+  // nàrtex
+  s+='<rect class="st" x="14" y="200" width="36" height="90"/><polygon class="st" points="12,200 52,200 32,186"/>';
+  // naus laterals: dos pisos d'arcades
+  s+='<rect class="st" x="50" y="150" width="104" height="140"/><rect class="st" x="306" y="150" width="104" height="140"/>';
+  [60,316].forEach(x0=>{for(let i=0;i<4;i++){const x=x0+i*23;s+=`<path class="room" d="M${x} 290 V250 A9 9 0 0 1 ${x+18} 250 V290 Z"/><path class="room" d="M${x+2} 222 V196 A7 7 0 0 1 ${x+16} 196 V222 Z"/>`}});
+  s+='<line class="ln" x1="50" y1="228" x2="154" y2="228"/><line class="ln" x1="306" y1="228" x2="410" y2="228"/>';
+  // exedra (oest)
+  s+='<path class="st2" d="M60 150 A40 40 0 0 1 100 110 V150 Z"/>';
+  // absis (est)
+  s+='<rect class="st" x="410" y="180" width="34" height="110"/><path class="st2" d="M410 180 V146 A34 34 0 0 1 444 180 Z"/>';
+  // semicúpules
+  s+='<path class="st" d="M98 150 A60 60 0 0 1 154 90 L154 150 Z"/>';
+  s+='<path class="st" d="M306 90 A60 60 0 0 1 362 150 L306 150 Z"/>';
+  // pilars i arc toral
+  s+='<rect class="st3" x="148" y="132" width="16" height="158"/><rect class="st3" x="296" y="132" width="16" height="158"/>';
+  s+='<path class="st" d="M154 132 A76 26 0 0 1 306 132 L294 132 A64 18 0 0 0 166 132 Z"/>';
+  // petxines
+  s+='<path class="st2" d="M164 132 Q168 112 182 104 L164 104 Z"/><path class="st2" d="M296 132 Q292 112 278 104 L296 104 Z"/>';
+  // anell de finestres i cúpula
+  s+='<rect class="st" x="160" y="92" width="140" height="12"/>';
+  for(let x=166;x<=290;x+=12)s+=`<rect class="room" x="${x}" y="94" width="6" height="8"/>`;
+  s+='<path class="st" d="M160 92 A70 52 0 0 1 300 92 L290 92 A60 44 0 0 0 170 92 Z"/>';
+  s+='<path fill="none" stroke="var(--ochre)" stroke-width="1.5" stroke-dasharray="4 4" d="M178 104 L210 250 M282 104 L250 250"/>';
+  return {vb:"0 0 460 320",svg:s,hs:[
+    ["Cúpula central",230,42,230,16,"31 m de diàmetre i més de 54 m d'alçada"],
+    ["Anell de 40 finestres",256,98,330,40,"Fan que la cúpula sembli que suri"],
+    ["Petxina",170,114,110,66,"Pas del quadrat al cercle de la cúpula"],
+    ["Arc toral",200,112,150,30,"Gran arc de mig punt sobre els pilars"],
+    ["Pilar",156,200,110,186,"Quatre pilars massissos delimiten un quadrat de 31 m"],
+    ["Semicúpula",336,112,400,96,"Ajuda a aguantar la cúpula (est i oest)"],
+    ["Exedra",82,134,30,120,"Espai semicircular sota la semicúpula"],
+    ["Tribuna",344,206,438,242,"Pis superior de les naus laterals"],
+    ["Absis",430,166,446,136,"Capçalera, a l'est"],
+    ["Nàrtex",32,250,32,306,"Vestíbul d'entrada"],
+    ["Espai central",230,200,230,200,"Gran espai cobert per la cúpula"]
+  ]};
+}
+function sofiaPlan(){
+  let s='<rect class="st" x="60" y="40" width="330" height="220"/>';
+  s+='<rect class="st2" x="60" y="40" width="34" height="220"/>';
+  s+='<rect x="94" y="46" width="280" height="42" fill="var(--lapis-soft)" stroke="var(--dark)"/><rect x="94" y="212" width="280" height="42" fill="var(--lapis-soft)" stroke="var(--dark)"/>';
+  s+='<rect class="room" x="94" y="94" width="280" height="112"/>';
+  for(let x=110;x<=360;x+=25){s+=`<circle class="dot" cx="${x}" cy="94" r="3"/><circle class="dot" cx="${x}" cy="206" r="3"/>`}
+  s+='<circle cx="232" cy="150" r="54" fill="var(--ochre-soft)" stroke="var(--dark)" stroke-dasharray="5 3"/>';
+  s+='<path fill="none" stroke="var(--dark)" stroke-dasharray="5 3" d="M178 104 A46 46 0 0 0 178 196 M286 104 A46 46 0 0 1 286 196"/>';
+  s+='<path class="st2" d="M132 112 A20 20 0 0 0 132 136 Z M132 164 A20 20 0 0 0 132 188 Z"/>';
+  s+='<path class="st2" d="M332 112 A20 20 0 0 1 332 136 Z M332 164 A20 20 0 0 1 332 188 Z"/>';
+  [[170,90],[282,90],[170,196],[282,196]].forEach(([x,y])=>s+=`<rect class="dot" x="${x}" y="${y}" width="14" height="14"/>`);
+  s+='<path class="st" d="M390 128 A22 22 0 0 1 390 172 Z"/>';
+  [[170,26],[282,26],[170,260],[282,260]].forEach(([x,y])=>s+=`<rect class="st3" x="${x}" y="${y}" width="14" height="14"/>`);
+  s+='<line stroke="var(--lapis)" stroke-width="1.5" stroke-dasharray="6 4" x1="40" y1="150" x2="420" y2="150"/>';
+  s+='<text x="14" y="140" font-size="10" fill="var(--muted)">entrada</text>';
+  return {vb:"0 0 460 300",svg:s,hs:[
+    ["Nàrtex",77,230,77,282,"Vestíbul d'entrada"],
+    ["Gran cúpula central",232,124,232,124,"Sobre un quadrat de 31 m delimitat per 4 pilars"],
+    ["Semicúpula",158,170,158,170,"Mitja cúpula a l'oest i a l'est"],
+    ["Exedra",126,124,122,72,"Espais semicirculars als costats de les semicúpules"],
+    ["Pilar",177,203,140,282,"Un dels quatre pilars massissos"],
+    ["Nau lateral",330,233,330,233,"Separada de la central per dos pisos de columnes i arcs"],
+    ["Contrafort",289,32,330,14,"Reforç exterior"],
+    ["Absis",400,140,440,110,"Capçalera semicircular"],
+    ["Eix longitudinal",412,150,440,186,"De l'entrada a l'absis: planta basilical"],
+    ["Nau central",310,176,310,176,"Espai central, cobert per la cúpula i les semicúpules"]
+  ]};
+}
+function pendentive(){
+  let s='<line class="ln" x1="10" y1="250" x2="450" y2="250"/>';
+  // petxines
+  s+='<rect class="st3" x="40" y="140" width="18" height="110"/><rect class="st3" x="182" y="140" width="18" height="110"/>';
+  s+='<path class="st2" d="M40 62 L40 140 A80 80 0 0 1 102 62 Z"/><path class="st2" d="M200 62 L200 140 A80 80 0 0 0 138 62 Z"/>';
+  s+='<path class="st" d="M40 140 A80 80 0 0 1 200 140 L182 140 A62 62 0 0 0 58 140 Z"/>';
+  
+  s+='<rect class="st" x="40" y="54" width="160" height="8"/>';
+  s+='<path class="st" d="M44 54 A76 50 0 0 1 196 54 Z"/>';
+  // trompa
+  s+='<polygon class="st" points="270,250 270,80 340,120 340,250"/><polygon class="st2" points="340,250 340,120 430,80 430,250"/>';
+  s+='<path class="st3" d="M300 140 L340 175 L380 140 A42 34 0 0 0 300 140 Z"/>';
+  for(let k=-3;k<=3;k++){const ex=340+k*13,ey=140-Math.sqrt(Math.max(0,1-(k*13/42)**2))*30;s+=`<line class="ln2" x1="340" y1="175" x2="${ex}" y2="${ey}"/>`}
+  s+='<path class="ln" d="M300 140 A42 34 0 0 1 380 140"/>';
+  s+='<polygon class="st" points="290,108 340,88 392,108 392,120 290,120"/>';
+  return {vb:"0 0 460 270",svg:s,hs:[
+    ["Cúpula",120,36,120,14,"Coberta semiesfèrica"],
+    ["Base circular de la cúpula",150,58,236,40,"El cercle que recullen les petxines"],
+    ["Petxina",56,90,20,80,"Triangle esfèric entre dos arcs"],
+    ["Arc toral",120,72,120,110,"Arc de mig punt sobre els pilars"],
+    ["Pilar",49,200,20,200,"Suport de la planta quadrada"],
+    ["Trompa",340,155,446,180,"Semicon en un racó: passa del quadrat a l'octògon"],
+    ["Racó (angle de murs)",340,220,446,230,"On es troben els dos murs"],
+    ["Base octogonal",370,112,446,104,"Damunt hi va la cúpula"]
+  ]};
+}
+function barrelParts(){
+  const cx=180,cy=170,ri=60,ro=86,dx=110,dy=-60;
+  let s='<line class="ln" x1="10" y1="262" x2="450" y2="262"/>';
+  s+=`<path class="st2" d="M${cx-ro+dx} ${cy+dy} A${ro} ${ro} 0 0 1 ${cx+ro+dx} ${cy+dy} V${262+dy} H${cx+ri+dx} V${cy+dy} A${ri} ${ri} 0 0 0 ${cx-ri+dx} ${cy+dy} V${262+dy} H${cx-ro+dx} Z"/>`;
+  s+=`<line class="ln" x1="${cx}" y1="${cy-5-ro}" x2="${cx+dx}" y2="${cy-ro+dy}"/><line class="ln" x1="${cx+ro}" y1="${cy}" x2="${cx+ro+dx}" y2="${cy+dy}"/><line class="ln" x1="${cx+ro}" y1="262" x2="${cx+ro+dx}" y2="${262+dy}"/>`;
+  s+=`<rect class="st" x="${cx-ro}" y="${cy}" width="${ro-ri}" height="${262-cy}"/><rect class="st" x="${cx+ri}" y="${cy}" width="${ro-ri}" height="${262-cy}"/>`;
+  s+=`<rect class="st3" x="${cx-ro-4}" y="${cy-5}" width="${ro-ri+8}" height="6"/><rect class="st3" x="${cx+ri-4}" y="${cy-5}" width="${ro-ri+8}" height="6"/>`;
+  const n=9,P=(r,a)=>`${(cx+r*Math.cos(a)).toFixed(1)} ${(cy-5+r*Math.sin(a)).toFixed(1)}`;
+  for(let i=0;i<n;i++){
+    const a1=Math.PI+i*Math.PI/n,a2=Math.PI+(i+1)*Math.PI/n;
+    const cls=(i===0||i===n-1)?"st3":(i===4?"gd":"st");
+    s+=`<path class="${cls}" d="M${P(ri,a1)} L${P(ro,a1)} A${ro} ${ro} 0 0 1 ${P(ro,a2)} L${P(ri,a2)} A${ri} ${ri} 0 0 0 ${P(ri,a1)} Z"/>`;
+  }
+  s+=`<line stroke="var(--lapis)" stroke-width="1.5" stroke-dasharray="6 4" x1="${cx}" y1="${cy-5}" x2="${cx+dx}" y2="${cy-5+dy}"/>`;
+  s+=`<path fill="none" stroke="var(--lapis)" stroke-width="1.5" d="M${cx-ri+4} 236 H${cx+ri-4} M${cx-ri+10} 231 l-6 5 l6 5 M${cx+ri-10} 231 l6 5 l-6 5"/>`;
+  return {vb:"0 0 460 280",svg:s,hs:[
+    ["Clau",180,93,180,40,"Peça central i més alta de l'arc"],
+    ["Línia de clau",236,63,290,30,"Línia que segueix la clau al llarg de la volta"],
+    ["Extradós",112,118,40,80,"Cara exterior de l'arc"],
+    ["Intradós",134,136,40,130,"Cara interior de l'arc"],
+    ["Salmer",106,158,40,176,"Primera peça de l'arc, sobre la imposta"],
+    ["Imposta",256,166,330,200,"On comença l'arc, sobre el suport"],
+    ["Eix de la volta",235,135,330,150,"Direcció en què s'allarga la volta"],
+    ["Llum",180,236,180,254,"Amplada entre els suports"]
+  ]};
+}
+const DIAGRAMS=[
+  {id:"colfacana",grp:"Obres PAU",name:"Façana del Colosseu",f:colFacade},
+  {id:"colseccio",grp:"Obres PAU",name:"Secció del Colosseu",f:colSection},
+  {id:"panteo",grp:"Obres PAU",name:"Panteó",f:pantheon},
+  {id:"august",grp:"Obres PAU",name:"August de Prima Porta",f:augustus},
+  {id:"trajana",grp:"Obres PAU",name:"Columna Trajana",f:trajan},
+  {id:"voltes",grp:"Arquitectura",name:"Arcs, voltes i cúpula",f:vaults},
+  {id:"domus",grp:"Arquitectura",name:"Domus",f:domus},
+  {id:"sofiaseccio",grp:"Bizanci",name:"Santa Sofia: secció",f:sofiaSection},
+  {id:"sofiaplanta",grp:"Bizanci",name:"Santa Sofia: planta",f:sofiaPlan},
+  {id:"petxina",grp:"Bizanci",name:"Petxina i trompa",f:pendentive},
+  {id:"cano",grp:"Bizanci",name:"Parts de la volta de canó",f:barrelParts}
+];
+let cur=null, mode="study", order=[], step=0, errors=0;
+const picker=$("#dpicker");
+["Obres PAU","Arquitectura","Bizanci"].forEach(c=>{
+  const g=document.createElement("span");g.className="grp";g.textContent=c;picker.appendChild(g);
+  DIAGRAMS.filter(d=>d.grp===c).forEach(d=>{
+    const b=document.createElement("button");b.type="button";b.textContent=d.name;b.dataset.id=d.id;b.setAttribute("aria-pressed","false");
+    b.addEventListener("click",()=>loadDiagram(d.id));picker.appendChild(b);
+  });
+});
+function loadDiagram(id){
+  const d=DIAGRAMS.find(x=>x.id===id)||DIAGRAMS[0];
+  store.set("diag",d.id);
+  $$("#dpicker button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===d.id?"true":"false"));
+  cur=d.f(); cur.id=d.id;
+  let g='';
+  cur.hs.forEach(h=>{
+    const [n,ax,ay,mx,my]=h;
+    if(ax!==mx||ay!==my) g+=`<line class="lead-l" x1="${ax}" y1="${ay}" x2="${mx}" y2="${my}"/><circle cx="${ax}" cy="${ay}" r="2.5" fill="var(--lapis)"/>`;
+  });
+  cur.hs.forEach((h,i)=>{
+    g+=`<g class="hot" tabindex="0" role="button" data-i="${i}" aria-label="Part ${i+1}"><circle cx="${h[3]}" cy="${h[4]}" r="11"/><text x="${h[3]}" y="${h[4]}">${i+1}</text></g>`;
+  });
+  $("#dsvg").innerHTML=`<svg viewBox="${cur.vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${d.name}">${cur.svg}${g}</svg>`;
+  $$("#dsvg .hot").forEach(el=>{
+    el.addEventListener("click",()=>hit(+el.dataset.i));
+    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();hit(+el.dataset.i)}});
+    el.addEventListener("mouseenter",()=>mark(+el.dataset.i));
+  });
+  $("#dlegend").innerHTML=cur.hs.map((h,i)=>`<li data-i="${i}"><span class="n">${i+1}</span><span><span class="nm">${h[0]}</span><span class="h nm">${h[5]||""}</span></span></li>`).join("");
+  setMode(mode);
+}
+function mark(i){
+  if(mode!=="study")return;
+  $$("#dsvg .hot").forEach(e=>e.classList.toggle("sel",+e.dataset.i===i));
+  $$("#dlegend li").forEach(e=>e.classList.toggle("sel",+e.dataset.i===i));
+}
+function setMode(m){
+  mode=m;
+  $("#dstudy").className=m==="study"?"btn":"btn ghost";
+  $("#dplay").className=m==="play"?"btn":"btn ghost";
+  $$("#dsvg .hot").forEach(e=>e.classList.remove("done","wrong","sel"));
+  $("#dfeed").textContent="";$("#dfeed").className="feedback";
+  if(m==="study"){
+    $("#dlegend").classList.remove("hide");
+    $("#dprompt").innerHTML="Passa per sobre o toca un número per veure'n el nom.";
+    $("#dscore").textContent="";
+  }else{
+    $("#dlegend").classList.add("hide");
+    order=shuffle(cur.hs.map((_,i)=>i));step=0;errors=0;ask();
+  }
+}
+function ask(){
+  if(step>=order.length){
+    $("#dprompt").innerHTML=`Fet! <b>${Math.max(0,order.length-errors)}/${order.length}</b> a la primera.`;
+    $("#dscore").textContent=errors?`${errors} errors`:"Cap error";
+    $("#dlegend").classList.remove("hide");
+    return;
+  }
+  $("#dprompt").innerHTML=`Toca: <b>${cur.hs[order[step]][0]}</b>`;
+  $("#dscore").textContent=`${step}/${order.length}`;
+}
+function hit(i){
+  if(mode==="study"){mark(i);return}
+  if(step>=order.length)return;
+  const want=order[step];
+  const el=$(`#dsvg .hot[data-i="${i}"]`);
+  if(el.classList.contains("done"))return;
+  if(i===want){
+    el.classList.add("done");
+    $("#dfeed").textContent="Correcte!";$("#dfeed").className="feedback ok";
+    step++;ask();
+  }else{
+    errors++;
+    el.classList.add("wrong");
+    $("#dfeed").textContent=`No. Aquest és «${cur.hs[i][0]}».`;$("#dfeed").className="feedback bad";
+    setTimeout(()=>el.classList.remove("wrong"),900);
+  }
+}
+$("#dstudy").addEventListener("click",()=>setMode("study"));
+$("#dplay").addEventListener("click",()=>setMode("play"));
+loadDiagram(store.get("diag")||"colfacana");
+
+/* ---------- EDIFICIS ---------- */
+const GRUPS=["Privat","Religiós","Civil · diversió","Civil · administratiu","Commemoratiu","Enginyeria"];
+const TYP=[
+ ["Temple","Religiós",["S'aixeca sobre un alt podi amb una escalinata només al davant, i les columnes laterals estan adossades al mur de la cel·la.","Pot tenir tres cel·les si està dedicat a la tríada Júpiter, Juno i Minerva."]],
+ ["Mausoleu","Religiós",["Construcció funerària monumental per a un personatge important, com la que es va fer construir l'emperador Adrià a Roma."]],
+ ["Basílica","Civil · administratiu",["Edifici de funció múltiple: borsa de comerç, sala de reunions, administració i sala de tribunals."]],
+ ["Termes","Civil · diversió",["El lloc preferit dels romans: s'hi banyaven i hi feien gimnàstica.","Trajà en va fer construir les primeres de monumentals a Roma."]],
+ ["Teatre","Civil · diversió",["Edifici semicircular per a representacions dramàtiques; als romans els agradaven molt les comèdies."]],
+ ["Amfiteatre","Civil · diversió",["Planta el·líptica, amb grades al voltant d'una arena, per a lluites de gladiadors i de feres.","S'hi podien fer naumàquies, omplint d'aigua la pista."]],
+ ["Circ","Civil · diversió",["Pista molt allargada on es feien curses de carros tirats per cavalls."]],
+ ["Arc de triomf","Commemoratiu",["Monument propagandístic que commemora les campanyes militars del seu promotor, com el de Constantí a Roma."]],
+ ["Columna commemorativa","Commemoratiu",["Fust decorat amb un relleu que narra les gestes militars d'un emperador."]],
+ ["Aqüeducte","Enginyeria",["Conducció amb arcs superposats que porta l'aigua a la ciutat, com la de Segòvia."]],
+ ["Domus","Privat",["Casa unifamiliar de les famílies riques, organitzada al voltant de l'atri i el peristil."]],
+ ["Insula","Privat",["Bloc d'habitatges de diversos pisos, normalment de lloguer, per als qui no podien tenir una casa particular."]],
+ ["Vil·la","Privat",["Centre d'explotació agrària al camp que en alguns casos esdevenia la segona residència de patricis."]]
+];
+let tCur=null,tGot=[null,null],tStats=[0,0],tLast=-1;
+function newTyp(){
+  let k;do{k=Math.floor(Math.random()*TYP.length)}while(k===tLast&&TYP.length>1);tLast=k;
+  const t=TYP[k];tCur=t;tGot=[null,null];
+  $("#tdesc").textContent=t[2][Math.floor(Math.random()*t[2].length)];
+  $("#tfeed").textContent="";$("#tfeed").className="feedback";
+  const others=shuffle(TYP.filter(x=>x!==t).map(x=>x[0])).slice(0,3);
+  mk($("#topt1"),shuffle([t[0],...others]),0,t[0]);
+  mk($("#topt2"),GRUPS,1,t[1]);
+}
+function mk(box,opts,idx,correct){
+  box.innerHTML="";
+  opts.forEach(o=>{const b=document.createElement("button");b.type="button";b.textContent=o;
+    b.addEventListener("click",()=>{
+      if(tGot[idx]!==null)return;
+      tGot[idx]=o===correct;
+      b.classList.add(o===correct?"ok":"bad");
+      if(o!==correct)Array.from(box.children).forEach(x=>{if(x.textContent===correct)x.classList.add("ok")});
+      Array.from(box.children).forEach(x=>x.disabled=true);
+      if(tGot[0]!==null&&tGot[1]!==null){
+        const both=tGot[0]&&tGot[1];
+        tStats[1]++;if(both)tStats[0]++;
+        $("#tscore").textContent=`${tStats[0]} encerts de ${tStats[1]}`;
+        $("#tfeed").textContent=(both?"Perfecte! ":"Gairebé. ")+`Resposta: ${tCur[0]} · grup ${tCur[1].toLowerCase()}.`;
+        $("#tfeed").className="feedback "+(both?"ok":"bad");
+      }
+    });box.appendChild(b)});
+}
+$("#tnext").addEventListener("click",newTyp);
+newTyp();
+
+/* ---------- VERITAT O FALS ---------- */
+const Q=[
+ ["arq","El Colosseu el va fer construir l'emperador Neró.",false,"Fals. El va fer construir Vespasià, primer emperador flavi, sobre l'antiga Casa Daurada de Neró."],
+ ["arq","El nom de Colosseu ve de l'estàtua colossal de Neró que hi havia al costat.",true,"Veritat. El nom oficial és Amfiteatre Flavi."],
+ ["arq","El Colosseu té planta circular.",false,"Fals. És el·líptica, de 187 × 155 m, com dos teatres units per l'escena."],
+ ["arq","A la façana del Colosseu, l'ordre jònic és a la planta baixa.",false,"Fals. La planta baixa és dòrica-toscana; el jònic és al 2n pis i el corinti, al 3r."],
+ ["arq","Les columnes adossades del Colosseu tenen una funció sobretot decorativa.",true,"Veritat. El pes l'aguanten els arcs i les voltes."],
+ ["arq","L'àtic del Colosseu el va afegir Domicià.",true,"Veritat. Augmentava la cabuda; és un mur massís amb pilastres corínties."],
+ ["arq","L'hipogeu és la graderia del Colosseu.",false,"Fals. La graderia és la càvea. L'hipogeu és el conjunt de passadissos i cambres sota l'arena."],
+ ["arq","El velarium protegia el públic del sol i de la pluja.",true,"Veritat. Era un tendal sostingut per 240 màstils i politges."],
+ ["arq","Al Colosseu, el públic seia sense cap ordre.",false,"Fals. La càvea es distribuïa de manera jeràrquica, segons la categoria social."],
+ ["arq","El Colosseu el va inaugurar Titus.",true,"Veritat. Titus, fill de Vespasià, el va inaugurar l'any 80 dC amb cent dies de jocs."],
+ ["arq","El Panteó està dedicat a tots els déus.",true,"Veritat. Pan, tot; theos, déu."],
+ ["arq","El Panteó que veiem avui és el que va fer construir Agripa el 27 aC.",false,"Fals. És la reconstrucció d'Adrià (118-125 dC), que va mantenir la inscripció d'Agripa."],
+ ["arq","El pòrtic del Panteó és octàstil i d'ordre corinti.",true,"Veritat. Té columnes corínties monolítiques de granit."],
+ ["arq","L'òcul del Panteó és una finestra lateral del tambor.",false,"Fals. És l'obertura circular del centre de la cúpula, de gairebé 9 m."],
+ ["arq","La cúpula del Panteó està decorada amb cinc fileres de 28 cassetons.",true,"Veritat. Creen jocs de llum i ombra."],
+ ["arq","A la cúpula del Panteó es va fer servir la pedra més pesant per donar-li solidesa.",false,"Fals. A la cúpula es va fer servir pedra volcànica, la més lleugera, per alleugerir el pes."],
+ ["arq","El Panteó es va conservar perquè al segle VII es va convertir en església.",true,"Veritat. Avui hi ha la tomba de Rafael i dels reis d'Itàlia."],
+ ["arq","El Panteó va inspirar la cúpula de Sant Pere del Vaticà.",true,"Veritat. També la del Duomo de Florència i l'arquitectura neoclàssica."],
+ ["arq","L'opus caementicium és el formigó romà.",true,"Veritat. Pedretes, grava, sorra, calç i aigua abocades en un encofrat."],
+ ["arq","Els romans van heretar dels etruscs l'arc de mig punt i la volta.",true,"Veritat. També el realisme i el sentit pràctic."],
+ ["arq","La volta d'aresta resulta de creuar dues voltes de canó.",true,"Veritat. L'aresta és la línia on es troben."],
+ ["arq","L'ordre compost uneix les volutes del jònic i les fulles d'acant del corinti.",true,"Veritat. L'ordre toscà, en canvi, és com el dòric però amb base."],
+ ["arq","L'ordre toscà és com el dòric però sense base.",false,"Fals. L'ordre toscà sí que té base; el dòric grec, no."],
+ ["arq","El temple romà s'aixeca sobre un alt podi amb una escalinata al davant.",true,"Veritat. És una herència etrusca."],
+ ["arq","La Maison Carrée de Nîmes és un temple perípter.",false,"Fals. És pseudoperípter: les columnes laterals estan adossades al mur de la cel·la."],
+ ["arq","El cardo i el decumanus són els dos carrers principals de la ciutat romana.",true,"Veritat. Al seu encreuament hi ha el fòrum."],
+ ["arq","La basílica romana era un temple.",false,"Fals. Era un edifici civil: comerç, reunions, administració i tribunals."],
+ ["arq","Les insulae eren les cases unifamiliars de les famílies riques.",false,"Fals. Eren blocs de pisos de lloguer. La casa unifamiliar rica és la domus."],
+ ["arq","L'impluvi és la bassa de l'atri que recull l'aigua de pluja.",true,"Veritat. L'obertura del sostre per sobre és el compluvi."],
+ ["arq","En l'arquitectura romana, la funció i la tècnica pesen més que l'estètica.",true,"Veritat. Per això hi ha un gran desenvolupament de l'enginyeria."],
+ ["esc","L'August de Prima Porta que es conserva és l'original de bronze.",false,"Fals. És una còpia en marbre (14 dC) d'un original de bronze del 20 aC."],
+ ["esc","L'August de Prima Porta segueix el model del Dorífor de Policlet.",true,"Veritat. En copia la composició, les proporcions i el contrapposto."],
+ ["esc","El rostre de l'August de Prima Porta és una bellesa ideal, com a les escultures gregues.",false,"Fals. Té les faccions individuals d'August, rejovenides: és un retrat psicològic."],
+ ["esc","August apareix descalç perquè ja és considerat un déu.",true,"Veritat. A Roma, anar descalç suggeria que el difunt ja era a l'Olimp."],
+ ["esc","El Cupido sobre un dofí recorda l'origen diví de la dinastia Júlia.",true,"Veritat. La dinastia deia descendir d'Enees, fill de Venus. També fa de suport del marbre."],
+ ["esc","Amb el braç dret aixecat, August adreça un discurs a les tropes.",true,"Veritat. És un gest d'autoritat."],
+ ["esc","L'August de Prima Porta està pensat per ser vist per tots els costats.",false,"Fals. Està pensat per a una visió frontal: es col·locava davant d'una paret o en un nínxol."],
+ ["esc","A la cuirassa d'August hi ha representades Hispània i la Gàl·lia.",true,"Veritat. Són les dues províncies pacificades durant el seu govern."],
+ ["esc","La Columna Trajana commemora la victòria contra els parts.",false,"Fals. Commemora les guerres de la Dàcia, l'actual Romania."],
+ ["esc","El relleu de la Columna Trajana puja en espiral al voltant del fust.",true,"Veritat. És un relleu continu helicoidal de més de 200 m."],
+ ["esc","A la Columna Trajana, Trajà apareix divinitzat.",false,"Fals. Apareix 59 vegades com un soldat i servidor de l'Estat, de manera realista."],
+ ["esc","La franja del relleu de la Columna Trajana s'eixampla a mesura que puja.",true,"Veritat. Passa de 0,89 m a baix a 1,25 m a dalt, perquè es vegi bé des de terra."],
+ ["esc","A dalt de la Columna Trajana avui hi ha l'estàtua de Trajà.",false,"Fals. L'estàtua de bronze de Trajà va desaparèixer i al segle XVI la van substituir per una de sant Pere."],
+ ["esc","La Columna Trajana també tenia una funció funerària.",true,"Veritat. A la base hi havia les cendres de Trajà i la seva dona."],
+ ["esc","El retrat romà és realista perquè hereta la tradició etrusca.",true,"Veritat. També rep la influència de l'escultura hel·lenística."],
+ ["esc","El retrat eqüestre és una novetat de l'escultura romana.",true,"Veritat. Representa el personatge a cavall."],
+ ["esc","La pintura romana es divideix en quatre estils.",true,"Veritat. D'incrustació, arquitectònic, ornamental i il·lusionista."],
+ ["esc","L'estil que crea il·lusions d'espais arquitectònics amb perspectiva és el tercer.",false,"Fals. És el segon, l'arquitectònic. El tercer és l'ornamental."],
+ ["esc","Bona part de la pintura romana conservada prové de Pompeia i Herculà.",true,"Veritat. L'erupció del Vesuvi (79 dC) les va colgar."],
+ ["esc","L'opus sectile fa servir tessel·les cúbiques iguals.",false,"Fals. Això és l'opus tessellatum. L'opus sectile té peces de formes i colors variats."],
+ ["biz","Santa Sofia és obra d'Artemi de Tral·les i Isidor de Milet.",true,"Veritat. Tots dos eren geòmetres; Isidor va escriure un tractat sobre les voltes."],
+ ["biz","Santa Sofia es va construir al segle IV per ordre de Constantí.",false,"Fals. L'actual és del 532-537, de Justinià. Constantí havia consagrat un temple de fusta anterior."],
+ ["biz","La cúpula de Santa Sofia descansa sobre petxines.",true,"Veritat. Quatre petxines fan el pas del quadrat al cercle de la cúpula."],
+ ["biz","Una petxina és un semicon col·locat en un racó.",false,"Fals. Això és una trompa. La petxina és un triangle esfèric entre dos arcs."],
+ ["biz","Els edificis bizantins tenen exteriors molt decorats i interiors austers.",false,"Fals. És al revés: exteriors austers de maó o pedra i interiors molt rics."],
+ ["biz","A la base de la cúpula de Santa Sofia hi ha 40 finestres.",true,"Veritat. Fan un anell de llum i sembla que la cúpula suri."],
+ ["biz","Santa Sofia té una planta de creu grega.",false,"Fals. Té planta basilical de tres naus amb un gran espai central cobert per la cúpula."],
+ ["biz","Les semicúpules ajuden a aguantar la cúpula central de Santa Sofia.",true,"Veritat. N'hi ha dues, a l'est i a l'oest, sostingudes per exedres."],
+ ["biz","La tribuna o matroneu és el pis superior de les naus laterals, espai per a les dones.",true,"Veritat. A Santa Sofia, des de la tribuna els alts càrrecs seguien la litúrgia."],
+ ["biz","Després del 1453, Santa Sofia es va convertir en mesquita.",true,"Veritat. S'hi van afegir quatre minarets i plafons amb inscripcions de l'Alcorà."],
+ ["biz","Santa Sofia estava al costat del palau imperial i de l'hipòdrom.",true,"Veritat. Mostra la unió del poder civil i el religiós."],
+ ["biz","A Santa Sofia es van fer servir per primer cop petxines a escala monumental.",true,"Veritat. És la seva gran aportació."],
+ ["biz","El període iconoclasta (726-843) va ser una etapa de destrucció d'imatges.",true,"Veritat. Es va prohibir fer i exhibir imatges religioses."],
+ ["biz","El cimaci és una peça troncopiramidal invertida col·locada sobre el capitell.",true,"Veritat. Alleugera el pes del capitell i dona més alçada."],
+ ["biz","Els mosaics bizantins mostren figures amb volum i profunditat.",false,"Fals. Les figures són rígides, frontals i sense volum ni profunditat, sobre fons daurat."],
+ ["biz","Les icones són petites pintures sobre fusta.",true,"Veritat. Representen Crist, la Mare de Déu o els sants."],
+ ["biz","L'escultura bizantina recupera el nu clàssic.",false,"Fals. L'oblida. Destaquen els relleus de vori, l'orfebreria i els esmalts."],
+ ["biz","San Vitale de Ravenna té planta octogonal.",true,"Veritat. És una planta centralitzada del segle VI."],
+ ["biz","El salmer és la peça central i més alta de l'arc.",false,"Fals. Aquesta és la clau. El salmer és la primera peça, sobre la imposta."],
+ ["biz","Constantinoble va caure en mans dels turcs otomans el 1453.",true,"Veritat. Va posar fi a l'Imperi bizantí."]
+];
+let qFilter="tot",qList=[],qi=0,qOk=0,qDone=0;
+function startQuiz(){qList=shuffle(Q.filter(q=>qFilter==="tot"||q[0]===qFilter));qi=0;qOk=0;qDone=0;renderQ()}
+function renderQ(){
+  const total=qList.length;
+  $("#qbar").style.width=(qDone/total*100)+"%";
+  $("#qscore").textContent=`${qOk} encerts · ${qDone}/${total}`;
+  $("#qexpl").innerHTML="";$("#qnext").hidden=true;
+  if(qi>=total){
+    $("#qtext").innerHTML=`Has acabat: <b>${qOk}/${total}</b>. ${qOk/total>=0.8?"Molt bé, ho tens.":"Repassa al Bloc 1 el que has fallat i torna-ho a provar."}`;
+    $("#qopts").innerHTML=`<button type="button" id="qagain">Tornar a començar</button>`;
+    $("#qagain").addEventListener("click",startQuiz);
+    return;
+  }
+  const q=qList[qi];
+  $("#qtext").textContent=q[1];
+  $("#qopts").innerHTML="";
+  [["Veritat",true],["Fals",false]].forEach(([lab,val])=>{
+    const b=document.createElement("button");b.type="button";b.textContent=lab;
+    b.addEventListener("click",()=>{
+      const ok=val===q[2];
+      Array.from($("#qopts").children).forEach(x=>{x.disabled=true;if(x.textContent===(q[2]?"Veritat":"Fals"))x.classList.add("ok")});
+      if(!ok)b.classList.add("bad");
+      if(ok)qOk++;qDone++;
+      $("#qscore").textContent=`${qOk} encerts · ${qDone}/${total}`;
+      $("#qbar").style.width=(qDone/total*100)+"%";
+      $("#qexpl").innerHTML=`<div class="expl"><b>${ok?"Correcte.":"Incorrecte."}</b> ${q[3]}</div>`;
+      $("#qnext").hidden=false;$("#qnext").focus();
+    });
+    $("#qopts").appendChild(b);
+  });
+}
+$("#qnext").addEventListener("click",()=>{qi++;renderQ()});
+$$("#qfilter button").forEach(b=>b.addEventListener("click",()=>{
+  qFilter=b.dataset.f;$$("#qfilter button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));startQuiz();
+}));
+startQuiz();
+
+show((location.hash||"#pla").slice(1));
+})();
+</script>
+</body></html>
