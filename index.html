@@ -125,6 +125,32 @@ th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu
 @media (max-width:600px){header.top{position:static}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
+<style>
+#gate{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:#f4efe6;padding:16px;font-family:system-ui,-apple-system,sans-serif}
+#gate .box{width:100%;max-width:340px;background:#fff;border:1px solid #e3d9c8;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.08);color:#222}
+#gate h2{margin:0 0 6px;font-size:1.3rem}#gate p{margin:0 0 16px;color:#666;font-size:.95rem}
+#gate input{width:100%;box-sizing:border-box;font-size:1.05rem;padding:11px 12px;border:1px solid #ccc;border-radius:10px;margin-bottom:10px;text-transform:uppercase}
+#gate button{width:100%;font-size:1rem;font-weight:600;padding:11px;border:0;border-radius:10px;background:#222;color:#fff;cursor:pointer}
+#gate .err{color:#a3271f;font-size:.9rem;min-height:1.2em;margin-bottom:8px}
+body.locked{overflow:hidden}
+</style>
+<div id="gate"><form class="box" id="gform"><h2>Repàs Roma i Bizanci</h2><p>Escriu el codi d'accés per entrar.</p><input id="gcode" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Codi d'accés"><div class="err" id="gerr" role="alert"></div><button type="submit">Entrar</button></form></div>
+<script>
+(function(){
+  function H(s){var a=0xdeadbeef,b=0x41c6ce57;for(var i=0;i<s.length;i++){var c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677);}a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);return (a>>>0).toString(36);}
+  var OK="647kj4", K="art-gate-v1", g=document.getElementById("gate");
+  function open(){g.style.display="none";document.body.classList.remove("locked");}
+  document.body.classList.add("locked");
+  try{ if(localStorage.getItem(K)===OK){open();return;} }catch(e){}
+  document.getElementById("gform").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("gcode").value.trim().toUpperCase();
+    if(H(v)===OK){ try{localStorage.setItem(K,OK);}catch(x){} open(); }
+    else document.getElementById("gerr").textContent="Codi incorrecte.";
+  });
+})();
+</script>
+
 
 <header class="top">
   <div class="wrap">
